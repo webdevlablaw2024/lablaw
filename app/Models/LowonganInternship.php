@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LowonganInternship extends Model
 {
     use HasFactory;
+    protected $table = 'artikel'; 
+    protected $primaryKey = 'id'; 
+    protected $fillable = ['nama_lowongan', 'deskripsi', 'kebutuhan', 'area']; 
 }
