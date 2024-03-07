@@ -42,4 +42,8 @@ Route::get('/halo', function () {
     return Inertia::render('Halo');
 });
 
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+
 require __DIR__.'/auth.php';
