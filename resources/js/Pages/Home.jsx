@@ -1,3 +1,5 @@
+import Footer from "@/Components/Footer";
+
 const Home = () => {
     return (
         <>
@@ -13,35 +15,51 @@ const Home = () => {
                 </div>
             </div>
             <div className="mt-20">
-                <div className="w-11/12 lg:w-5/6 mx-auto ">
+                <div className="w-11/12 lg:w-5/6 mx-auto container mb-32 ">
                     <div>
                         <h2 className="text-xl 2xl:text-4xl font-bold mb-2">
                             Latest Articles
                         </h2>
                         <div className="h-[1px] lg:h-0.25 w-full bg-gray-500 mb-10"></div>
                     </div>
-                    <div className="mt-10 flex ">
+
+                    <div className="flex mb-5">
                         <img
                             src="build/assets/images/hero_image.png"
-                            alt=""
-                            className="w-5/12 lg:w-3/12 h-60 rounded-xl"
+                            alt="Product"
+                            className="w-32 h-28 rounded-md lg:rounded-xl lg:w-48 lg:h-44  "
                         />
-                        <div className="w-7/12 lg:w-9/12 bg-blue-300">
-                            <h1 className="font-bold">INI JUDUL PALING PANJANGGGGGGGGGGGGGGG</h1>
+                        <div className="ml-4  w-full py-3 ">
+                            <h3 className="text-lg lg:text-2xl text-black font-semibold leading-none">
+                                Lorem ipsum dolor sit amet consectetur.
+                            </h3>
+                            <p className="text-slate-900 text-sm lg:text-base ">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti in atque provident
+                                nostrum alias dolorem.
+                            </p>
                         </div>
                     </div>
-                    <div className="mt-10 flex ">
+                    <div className="flex mb-5">
                         <img
-                            src="build/assets/images/facebook.png"
-                            alt=""
-                            className="w-3/12 h-60 rounded-xl"
+                            src="build/assets/images/hero_image.png"
+                            alt="Product"
+                            className="w-32 h-28 rounded-md lg:rounded-xl lg:w-48 lg:h-44 "
                         />
-                        <div className="w-9/12">
-                            <p></p>
+                        <div className="ml-4  w-full py-3 ">
+                            <h3 className="text-lg lg:text-2xl text-black font-semibold leading-none">
+                                Lorem ipsum dolor sit amet consectetur.
+                            </h3>
+                            <p className="text-slate-900 text-sm lg:text-base ">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti in atque provident
+                                nostrum alias dolorem.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };
