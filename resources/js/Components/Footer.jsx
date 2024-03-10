@@ -6,11 +6,11 @@ const Footer = () => {
                     <img
                         src="build/assets/images/logo.png"
                         alt=""
-                        className="px-4 "
+                        className="px-4 pt-20 w-32 h-44 lg:w-40 lg:h-52"
                     />
                     <div className="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
                         <div className="">
-                            <h6 className=" flex items-center  mb-6 text-sm  text-white font-semibold uppercase ">
+                            <h6 className=" flex items-center  mb-6   text-white font-semibold uppercase ">
                                 CONTACT US
                             </h6>
                             <h1 className="text-white text-2xl mb-6">
@@ -22,7 +22,7 @@ const Footer = () => {
                             </p>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold uppercase text-white">
+                            <h2 className="mb-6 font-semibold uppercase text-white">
                                 Explore
                             </h2>
                             <ul className=" text-[#D5D5D5] font-medium">
@@ -44,7 +44,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold uppercase text-white">
+                            <h2 className="mb-6 font-semibold uppercase text-white">
                                 Location
                             </h2>
                             <p className="text-[#D5D5D5]">
