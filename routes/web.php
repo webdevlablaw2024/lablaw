@@ -16,14 +16,14 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -42,8 +42,11 @@ Route::get('/halo', function () {
     return Inertia::render('Halo');
 });
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return Inertia::render('Home');
+});
+Route::get('/soon', function () {
+    return Inertia::render('ComingSoon');
 });
 
 require __DIR__.'/auth.php';

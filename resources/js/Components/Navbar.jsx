@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const navigation = [
-    { name: "Home", href: "#", current: true },
-    { name: "Education", href: "#", current: false },
-    { name: "Firm", href: "#", current: false },
-    { name: "News & Insights", href: "#", current: false },
+    { name: "Home", href: "/", current: true },
+    { name: "Education", href: "soon", current: false },
+    { name: "Firm", href: "soon", current: false },
+    { name: "News & Insights", href: "soon", current: false },
 ];
 
 function classNames(...classes) {
@@ -118,7 +118,7 @@ export default function Navbar() {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <Disclosure.Button
+                                <Link
                                     key={item.name}
                                     as="a"
                                     href={item.href}
@@ -133,7 +133,7 @@ export default function Navbar() {
                                     }
                                 >
                                     {item.name}
-                                </Disclosure.Button>
+                                </Link>
                             ))}
                         </div>
                     </Disclosure.Panel>
