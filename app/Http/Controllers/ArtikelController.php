@@ -12,7 +12,13 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        //
+        //get all artikel
+        $artikel = Artikel::latest()->get();
+
+        //return view
+        return inertia('Artikel/Index', [
+            'artikel' => $artikel
+        ]);
     }
 
     /**
@@ -21,6 +27,7 @@ class ArtikelController extends Controller
     public function create()
     {
         //
+        return inertia('Artikel/Create');
     }
 
     /**

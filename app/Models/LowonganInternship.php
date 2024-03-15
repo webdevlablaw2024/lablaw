@@ -11,4 +11,8 @@ class LowonganInternship extends Model
     protected $table = 'artikel'; 
     protected $primaryKey = 'id'; 
     protected $fillable = ['nama_lowongan', 'deskripsi', 'kebutuhan', 'area']; 
+
+    public function internship() {
+        return $this->hasOne(Internship::class);
+    }
 }

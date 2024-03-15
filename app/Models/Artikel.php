@@ -11,4 +11,8 @@ class Artikel extends Model
     protected $table = 'artikel'; 
     protected $primaryKey = 'id'; 
     protected $fillable = ['users_id', 'judul', 'deskripsi', 'gambar', 'tag']; 
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

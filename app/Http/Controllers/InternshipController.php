@@ -12,7 +12,13 @@ class InternshipController extends Controller
      */
     public function index()
     {
-        //
+        //get all internship
+        $internship = Internship::latest()->get();
+
+        //return view
+        return inertia('Internship/Index', [
+            'internship' => $internship
+        ]);
     }
 
     /**
