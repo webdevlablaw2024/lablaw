@@ -109,7 +109,7 @@ export default function Navbar() {
                                     href="register"
                                     className="relative   p-2.5 text-white hover:text-gray-200 border-white hover:border-gray-200 border"
                                 >
-                                    Sign Up
+                                    Sign In
                                 </Link>
                             </div>
                         </div>
