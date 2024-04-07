@@ -58,14 +58,6 @@ const Applicant = () => {
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white">
                     <div className="text-center my-10">
-                        <div className="flex flex-col md:flex-row justify-end items-center mb-4 mt-5">
-                            <Link
-                                href=""
-                                className="py-2.5 px-8 font-semibold text-white bg-[#004877] rounded-full"
-                            >
-                                + Add New Position
-                            </Link>
-                        </div>
                         <DataTable
                             columns={column}
                             data={data}

@@ -5,41 +5,41 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 const Position = () => {
-   const column = [
-       { name: "No", selector: (row, index) => index + 1, sortable: false },
-       { name: "Title", selector: (row) => row.title, sortable: true },
-       { name: "Image", selector: (row) => row.image, sortable: true },
-       {
-           name: "Action",
-           cell: (row) => (
-               <div className="flex space-x-2">
-                   <Link
-                       href=""
-                       className=" p-2 flex items-center gap-x-1 text-sm"
-                   >
-                       <FiEdit className="text-green-600" size={20} /> Edit
-                   </Link>
-                   <button
-                       onClick={() => {
-                           setDeleteItemId(row.id);
-                           setModalIsOpen(true);
-                       }}
-                       className=" p-2 flex items-center gap-x-1 text-sm"
-                   >
-                       <RiDeleteBinLine className="text-red-600" size={20} />{" "}
-                       Delete
-                   </button>
-               </div>
-           ),
-           width: "200px",
-       },
-   ];
+    const column = [
+        { name: "No", selector: (row, index) => index + 1, sortable: false },
+        { name: "Title", selector: (row) => row.title, sortable: true },
+        { name: "Image", selector: (row) => row.image, sortable: true },
+        {
+            name: "Action",
+            cell: (row) => (
+                <div className="flex space-x-2">
+                    <Link
+                        href=""
+                        className=" p-2 flex items-center gap-x-1 text-sm"
+                    >
+                        <FiEdit className="text-green-600" size={20} /> Edit
+                    </Link>
+                    <button
+                        onClick={() => {
+                            setDeleteItemId(row.id);
+                            setModalIsOpen(true);
+                        }}
+                        className=" p-2 flex items-center gap-x-1 text-sm"
+                    >
+                        <RiDeleteBinLine className="text-red-600" size={20} />{" "}
+                        Delete
+                    </button>
+                </div>
+            ),
+            width: "200px",
+        },
+    ];
 
-   const data = [
-       { title: "Article 1", image: "https://example.com/image1.jpg", id: 1 },
-       { title: "Article 2", image: "https://example.com/image2.jpg", id: 2 },
-       { title: "Article 3", image: "https://example.com/image3.jpg", id: 3 },
-   ];
+    const data = [
+        { title: "Article 1", image: "https://example.com/image1.jpg", id: 1 },
+        { title: "Article 2", image: "https://example.com/image2.jpg", id: 2 },
+        { title: "Article 3", image: "https://example.com/image3.jpg", id: 3 },
+    ];
 
     return (
         <>

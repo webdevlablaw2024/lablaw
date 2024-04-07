@@ -49,7 +49,7 @@ Route::get('/soon', function () {
     return Inertia::render('ComingSoon');
 });
 Route::get('/admin', function () {
-    return Inertia::render('Admin/Internship/Applicant');
+    return Inertia::render('Admin/Internship/Position/EditPosition');
 });
 
 require __DIR__.'/auth.php';
