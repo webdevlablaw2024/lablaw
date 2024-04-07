@@ -45,7 +45,7 @@ const Navbar = () => {
                             </button>
                             <a className="flex ms-2 md:me-24">
                                 <img
-                                    src="/images/logo.png"
+                                    src="/build/assets/images/logo-lablaw.png"
                                     alt=""
                                     className="w-8 mr-2"
                                 />
