@@ -48,5 +48,8 @@ Route::get('/', function () {
 Route::get('/soon', function () {
     return Inertia::render('ComingSoon');
 });
+Route::get('/admin', function () {
+    return Inertia::render('Admin/Internship/Applicant');
+});
 
 require __DIR__.'/auth.php';
