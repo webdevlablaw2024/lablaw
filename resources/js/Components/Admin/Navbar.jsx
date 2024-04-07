@@ -47,9 +47,9 @@ const Navbar = () => {
                                 <img
                                     src="/build/assets/images/logo-lablaw.png"
                                     alt=""
-                                    className="w-8 mr-2"
+                                    className="w-10 mr-2"
                                 />
-                                <span className=" text-blue-900  self-center text-xl font-bold sm:text-2xl whitespace-nowrap">
+                                <span className=" text-blue-900  self-center text-2xl font-extrabold sm:text-2xl whitespace-nowrap">
                                     LabLaw
                                 </span>
                             </a>

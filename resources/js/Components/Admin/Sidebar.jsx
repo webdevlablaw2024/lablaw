@@ -73,7 +73,7 @@ const Sidebar = ({ isOpen }) => {
                         {menuItems.map((menuItem, index) => (
                             <li
                                 key={index}
-                                className={`relative ${
+                                className={`relative cursor-pointer ${
                                     isSubMenuOpen(index) ? "z-50" : ""
                                 }`}
                             >
