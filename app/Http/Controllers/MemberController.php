@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,7 @@ class MemberController extends Controller
     public function index()
     {
         //get all member
-        $member = Member::latest()->get();
+        $member = Member::with("position")->latest()->get();
 
         //return view
         return Inertia::render('Admin/Member/Member', [
@@ -27,7 +28,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Member/AddMember');
+        $positions = Position::get();
+        return Inertia::render('Admin/Member/AddMember', ['positions' => $positions]);
     }
 
     /**
@@ -35,23 +37,31 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'name'   => 'required',
             'gender' => 'required',
-            // 'image' => 'required',
-            'position' => 'required',
+            'image' => 'image|max:2048',
+            'position_id' => 'required|exists:position,id',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalName();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->move(storage_path('app/public/member/images/'), $imageName);
+        }
+
 
         Member::create([
             'name'     => $request->name,
             'gender'   => $request->gender,
-            // 'image'   => $request->image,
-            'position'   => $request->position,
+            'image'   => $imageName,
+            'position_id' => $request->position_id,
+           
         ]);
 
         //redirect
-        return redirect()->route('Admin/Member/Member')->with('success', 'Data Member Berhasil Ditambahkan!');
+        return redirect()->route('member.index')->with('success', 'Data Member Berhasil Ditambahkan!');
     }
 
     /**
@@ -72,8 +82,12 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
-        return Inertia::render('Admin/Member/EditMember');
+        $positions = Position::get();
+        $member = Member::where('id', $id)->first();
+        return Inertia::render('Admin/Member/EditMember', [
+            'positions' => $positions,
+            'member' => $member,
+        ]);
     }
 
     /**

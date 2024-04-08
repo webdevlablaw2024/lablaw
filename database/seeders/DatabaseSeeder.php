@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
             ArtikelTableSeeder::class,
             InternshipTableSeeder::class,
             LowonganInternshipTableSeeder::class,
-            MemberTableSeeder::class,
             PositionTableSeeder::class,
+            MemberTableSeeder::class,
             UsersTableSeeder::class,
         ]);
     }

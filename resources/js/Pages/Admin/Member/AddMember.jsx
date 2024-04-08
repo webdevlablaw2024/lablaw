@@ -1,9 +1,11 @@
 import { useState } from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-const AddMember = () => {
+const AddMember = (props) => {
+    const positions = props.positions;
+    const { data, setData, post, errors } = useForm();
     const [imagePreview, setImagePreview] = useState(null);
 
     const handleImageChange = (e) => {
@@ -14,7 +16,14 @@ const AddMember = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setData("image", file); // Set image data to form data
         }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(data);
+        post(route("member.store"), data); // Send form data using post method from useForm
     };
 
     return (
@@ -31,11 +40,7 @@ const AddMember = () => {
                     <h1 className="text-xl font-bold mb-3">Add Member</h1>
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
-                    <form
-                        action=""
-                        className="my-6"
-                        encType="multipart/form-data"
-                    >
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
                                 htmlFor="name"
@@ -47,8 +52,19 @@ const AddMember = () => {
                                 id="name"
                                 type="text"
                                 placeholder="Please enter name"
-                                className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.name ? "border-red-500" : ""
+                                }`}
+                                value={data.name || ""}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
                             />
+                            {errors.name && (
+                                <div className="text-red-500">
+                                    {errors.name}
+                                </div>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -60,12 +76,20 @@ const AddMember = () => {
                             <select
                                 id="gender"
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                value={data.gender || ""}
+                                onChange={(e) =>
+                                    setData("gender", e.target.value)
+                                }
                             >
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-                                <option value="other">Other</option>
                             </select>
+                            {errors.gender && (
+                                <div className="text-red-500">
+                                    {errors.gender}
+                                </div>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -78,6 +102,7 @@ const AddMember = () => {
                                 id="gambar"
                                 type="file"
                                 name="gambar"
+                                accept="image/*"
                                 className="border-2 border-[#D8DBDF] p-2 bg-[#FBFBFB] rounded-lg"
                                 onChange={handleImageChange}
                             />
@@ -87,6 +112,11 @@ const AddMember = () => {
                                     alt="Preview"
                                     className="mt-2 w-40 h-40 object-cover"
                                 />
+                            )}
+                            {errors.image && (
+                                <div className="text-red-500">
+                                    {errors.image}
+                                </div>
                             )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
@@ -99,12 +129,23 @@ const AddMember = () => {
                             <select
                                 id="position"
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                value={data.position_id || ""}
+                                onChange={(e) =>
+                                    setData("position_id", e.target.value)
+                                }
                             >
                                 <option value="">Select position</option>
-                                <option value="manager">Manager</option>
-                                <option value="supervisor">Supervisor</option>
-                                <option value="staff">Staff</option>
+                                {positions.map((pos, index) => (
+                                    <option key={index} value={pos.id}>
+                                        {pos.position}
+                                    </option>
+                                ))}
                             </select>
+                            {errors.position_id && (
+                                <div className="text-red-500">
+                                    {errors.position_id}
+                                </div>
+                            )}
                         </div>
                         <div className="flex justify-end mt-6 gap-x-4">
                             <Link

@@ -5,17 +5,21 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 const Member = (props) => {
-    console.log(props.member)
+    console.log(props.member);
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Name", selector: (row) => row.name, sortable: true },
-        { name: "Position", selector: (row) => row.position, sortable: true },
+        {
+            name: "Position",
+            selector: (row) => row.position.position,
+            sortable: true,
+        },
         {
             name: "Action",
             cell: (row) => (
                 <div className="flex space-x-2">
                     <Link
-                        href=""
+                        href={route("member.edit", row.id)}
                         className=" p-2 flex items-center gap-x-1 text-sm"
                     >
                         <FiEdit className="text-green-600" size={20} /> Edit

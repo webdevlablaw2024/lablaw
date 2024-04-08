@@ -10,5 +10,10 @@ class Position extends Model
     use HasFactory;
     protected $table = 'position'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['position', 'image', 'description',]; 
+    protected $fillable = ['position', 'image', 'description',];
+
+    public function member()
+    {
+        return $this->hasMany(Member::class);
+    }
 }

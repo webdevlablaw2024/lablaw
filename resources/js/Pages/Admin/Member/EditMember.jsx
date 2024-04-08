@@ -3,7 +3,8 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import { Link } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-const EditMember = () => {
+const EditMember = (props) => {
+     const positions = props.positions;
     const [imagePreview, setImagePreview] = useState(null);
 
     const handleImageChange = (e) => {
@@ -64,7 +65,6 @@ const EditMember = () => {
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
@@ -101,9 +101,11 @@ const EditMember = () => {
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
                             >
                                 <option value="">Select position</option>
-                                <option value="manager">Manager</option>
-                                <option value="supervisor">Supervisor</option>
-                                <option value="staff">Staff</option>
+                                {positions.map((pos, index) => (
+                                    <option key={index} value={pos.id}>
+                                        {pos.position}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className="flex justify-end mt-6 gap-x-4">
