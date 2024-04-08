@@ -16,7 +16,6 @@ const EditArticle = (props) => {
         id: props.artikel.id,
         title: props.artikel.title,
         author: props.artikel.author,
-        image: props.artikel.image,
         description: props.artikel.description,
     });
 
@@ -24,6 +23,7 @@ const EditArticle = (props) => {
         e.preventDefault();
 
         post(route("article.update", { id: props.artikel.id }), data);
+        console.log(data);
     };
 
     const handleImageChange = (e) => {
@@ -110,6 +110,7 @@ const EditArticle = (props) => {
                                 id="image"
                                 type="file"
                                 name="image"
+                                accept="image/*"
                                 className="border-2 border-gray-300 rounded-lg p-2"
                                 onChange={handleImageChange}
                             />

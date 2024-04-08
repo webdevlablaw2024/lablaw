@@ -53,7 +53,9 @@ const AddArticle = () => {
                                 id="title"
                                 type="text"
                                 placeholder="Please enter title"
-                                className="border-2 border-gray-300 rounded-lg p-2"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.title ? "border-red-500" : ""
+                                }`}
                                 value={data.title || ""}
                                 onChange={(e) =>
                                     setData("title", e.target.value)
@@ -76,7 +78,9 @@ const AddArticle = () => {
                                 id="author"
                                 type="text"
                                 placeholder="Please enter author"
-                                className="border-2 border-gray-300 rounded-lg p-2"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.author ? "border-red-500" : ""
+                                }`}
                                 value={data.author || ""}
                                 onChange={(e) =>
                                     setData("author", e.target.value)
@@ -99,6 +103,7 @@ const AddArticle = () => {
                                 id="image"
                                 type="file"
                                 name="image"
+                                accept="image/*"
                                 className="border-2 border-gray-300 rounded-lg p-2"
                                 onChange={handleImageChange}
                             />
