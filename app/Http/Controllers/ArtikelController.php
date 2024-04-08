@@ -38,30 +38,72 @@ class ArtikelController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title'   => 'required',
+            'author' => 'required',
+            // 'image' => 'required',
+            'description' => 'required',
+            'tag' => 'required',
+        ]);
+
+        Artikel::create([
+            'title'     => $request->title,
+            'author'   => $request->author,
+            // 'image'   => $request->image,
+            'description'   => $request->description,
+            'tag'   => $request->tag,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Article/Article')->with('success', 'Data Artikel Berhasil Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
+        $artikel = Artikel::latest()->get($id);
+
+        return Inertia::render('Admin/Article/ShowArticle', [
+            'artikel' => $artikel
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        return Inertia::render('Admin/Article/EditArticle');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'title'   => 'required',
+            'author' => 'required',
+            // 'image' => 'required',
+            'description' => 'required',
+            'tag' => 'required',
+        ]);
+
+        Artikel::update([
+            'title'     => $request->title,
+            'author'   => $request->author,
+            // 'image'   => $request->image,
+            'description'   => $request->description,
+            'tag'   => $request->tag,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Article/Article')->with('success', 'Data Artikel Berhasil Diupdate!');
     }
 
     /**
@@ -70,5 +112,8 @@ class ArtikelController extends Controller
     public function destroy(string $id)
     {
         //
+        $artikel->delete();
+
+        return redirect()->route('Admin/Article/Article')->with('success', 'Data Berhasil Dihapus!');
     }
 }

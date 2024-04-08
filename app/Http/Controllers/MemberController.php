@@ -36,30 +36,68 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name'   => 'required',
+            'gender' => 'required',
+            // 'image' => 'required',
+            'position' => 'required',
+        ]);
+
+        Member::create([
+            'name'     => $request->name,
+            'gender'   => $request->gender,
+            // 'image'   => $request->image,
+            'position'   => $request->position,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Member/Member')->with('success', 'Data Member Berhasil Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
+        $member = Member::latest()->get($id);
+
+        return Inertia::render('Admin/Member/ShowMember', [
+            'member' => $member
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        return Inertia::render('Admin/Member/EditMember');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'name'   => 'required',
+            'gender' => 'required',
+            // 'image' => 'required',
+            'position' => 'required',
+        ]);
+
+        Member::update([
+            'name'     => $request->name,
+            'gender'   => $request->gender,
+            // 'image'   => $request->image,
+            'position'   => $request->position,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Member/Member')->with('success', 'Data Member Berhasil Diupdate!');
     }
 
     /**
@@ -68,5 +106,8 @@ class MemberController extends Controller
     public function destroy(string $id)
     {
         //
+        $member->delete();
+
+        return redirect()->route('Admin/Member/Member')->with('success', 'Data Berhasil Dihapus!');
     }
 }

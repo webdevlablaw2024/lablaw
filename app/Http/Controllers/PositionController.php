@@ -36,30 +36,64 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'position'   => 'required',
+            // 'image' => 'required',
+            'description' => 'required',
+        ]);
+
+        Position::create([
+            'position'     => $request->position,
+            // 'image'   => $request->image,
+            'description'   => $request->description,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Internship/Position/Position')->with('success', 'Data Position Berhasil Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
+        $position = Position::latest()->get($id);
+
+        return Inertia::render('Admin/Internship/Position/ShowPosition', [
+            'position' => $position
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        return Inertia::render('Admin/Internship/Position/EditPosition');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'position'   => 'required',
+            // 'image' => 'required',
+            'description' => 'required',
+        ]);
+
+        Position::update([
+            'position'     => $request->position,
+            // 'image'   => $request->image,
+            'description'   => $request->description,
+        ]);
+
+        //redirect
+        return redirect()->route('Admin/Internship/Position/Position')->with('success', 'Data Position Berhasil Diupdate!');
     }
 
     /**
@@ -68,5 +102,8 @@ class PositionController extends Controller
     public function destroy(string $id)
     {
         //
+        $position->delete();
+
+        return redirect()->route('Admin/Internship/Position/Article')->with('success', 'Data Berhasil Dihapus!');
     }
 }
