@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { Link } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 
 const Navbar = () => {
+    const { auth } = usePage().props;
+    console.log(auth);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -83,33 +86,37 @@ const Navbar = () => {
                                                 className="text-sm text-gray-900"
                                                 role="none"
                                             >
-                                                Mohammad Ilham Arkan
+                                                {auth.name}
                                             </p>
                                             <p
                                                 className="text-sm font-medium text-gray-900 truncate"
                                                 role="none"
                                             >
-                                                ilhamarkan2004@gmail.com
+                                                {auth.email}
                                             </p>
                                         </div>
                                         <ul className="py-1" role="none">
                                             <li>
                                                 <Link
-                                                    to={"/profile"}
-                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                    href={route("profile.edit")}
+                                                    className="block w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                     role="menuitem"
+                                                    w-full
+                                                    text-start
                                                 >
                                                     Profile
                                                 </Link>
                                             </li>
                                             <li>
-                                                <a
-                                                    href="#"
-                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                <Link
+                                                    method="post"
+                                                    href={route("logout")}
+                                                    as="button"
+                                                    className="block w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                     role="menuitem"
                                                 >
                                                     Logout
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>

@@ -4,10 +4,10 @@ import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const Position = () => {
+const Position = (props) => {
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
-        { name: "Title", selector: (row) => row.title, sortable: true },
+        { name: "Title", selector: (row) => row.position, sortable: true },
         { name: "Image", selector: (row) => row.image, sortable: true },
         {
             name: "Action",
@@ -53,7 +53,7 @@ const Position = () => {
                     <div className="text-center my-10">
                         <div className="flex flex-col md:flex-row justify-end items-center mb-4 mt-5">
                             <Link
-                                href=""
+                                href={route("position.create")}
                                 className="py-2.5 px-8 font-semibold text-white bg-[#004877] rounded-full"
                             >
                                 + Add New Position
@@ -61,7 +61,7 @@ const Position = () => {
                         </div>
                         <DataTable
                             columns={column}
-                            data={data}
+                            data={props.position}
                             pagination
                             customStyles={{
                                 headRow: {

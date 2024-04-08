@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PositionController extends Controller
 {
@@ -14,8 +16,8 @@ class PositionController extends Controller
          //get all position
          $position = Position::latest()->get();
 
-         //return view
-         return inertia('Position/Index', [
+        //return view
+        return Inertia::render('Admin/Internship/Position/Position', [
              'position' => $position
          ]);
     }
@@ -25,7 +27,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Internship/Position/AddPosition');
     }
 
     /**

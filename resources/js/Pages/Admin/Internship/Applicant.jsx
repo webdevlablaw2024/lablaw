@@ -5,12 +5,34 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiEye } from "react-icons/fi";
 
-const Applicant = () => {
+const Applicant = (props) => {
+    console.log(props.internship)
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
-        { name: "Name", selector: (row) => row.name, sortable: true },
-        { name: "Position", selector: (row) => row.position, sortable: true },
-        { name: "Resume", selector: (row) => row.resume, sortable: true },
+        {
+            name: "Name",
+            selector: (row) => row.nama,
+            sortable: true,
+            width: "200px",
+        },
+        {
+            name: "Position",
+            selector: (row) => row.lowongan_internship.nama_lowongan,
+            sortable: true,
+            width: "200px",
+        },
+        {
+            name: "Resume",
+            selector: (row) => row.cv,
+            sortable: true,
+            width: "400px",
+        },
+        {
+            name: "Portofolio",
+            selector: (row) => row.portofolio,
+            sortable: true,
+            width: "400px",
+        },
         {
             name: "Action",
             cell: (row) => (
@@ -35,16 +57,19 @@ const Applicant = () => {
             name: "John Doe",
             position: "Software Engineer",
             resume: "https://example.com/resume1.pdf",
+            portofolio: "https://example.com/portofolio1.pdf",
         },
         {
             name: "Jane Smith",
             position: "Data Analyst",
             resume: "https://example.com/resume2.pdf",
+            portofolio: "https://example.com/portofolio2.pdf",
         },
         {
             name: "Michael Johnson",
             position: "Project Manager",
             resume: "https://example.com/resume3.pdf",
+            portofolio: "https://example.com/portofolio3.pdf",
         },
     ];
 
@@ -60,7 +85,7 @@ const Applicant = () => {
                     <div className="text-center my-10">
                         <DataTable
                             columns={column}
-                            data={data}
+                            data={props.internship}
                             pagination
                             customStyles={{
                                 headRow: {

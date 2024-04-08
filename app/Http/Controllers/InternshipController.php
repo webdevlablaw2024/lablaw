@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Internship;
+use Inertia\Inertia;
 
 class InternshipController extends Controller
 {
@@ -13,10 +14,10 @@ class InternshipController extends Controller
     public function index()
     {
         //get all internship
-        $internship = Internship::latest()->get();
+        $internship = Internship::with('lowongan_internship')->latest()->get();
 
         //return view
-        return inertia('Internship/Index', [
+        return Inertia::render('Admin/Internship/Applicant', [
             'internship' => $internship
         ]);
     }

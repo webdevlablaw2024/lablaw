@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MemberController extends Controller
 {
@@ -15,7 +17,7 @@ class MemberController extends Controller
         $member = Member::latest()->get();
 
         //return view
-        return inertia('Member/Index', [
+        return Inertia::render('Admin/Member/Member', [
             'member' => $member
         ]);
     }
@@ -25,7 +27,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Member/AddMember');
     }
 
     /**
