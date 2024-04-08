@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use Inertia\Inertia;
 
 class ArtikelController extends Controller
 {
@@ -16,9 +17,10 @@ class ArtikelController extends Controller
         $artikel = Artikel::latest()->get();
 
         //return view
-        return inertia('Artikel/Index', [
+        return Inertia::render('Admin/Article/Article', [
             'artikel' => $artikel
         ]);
+    
     }
 
     /**
@@ -27,7 +29,7 @@ class ArtikelController extends Controller
     public function create()
     {
         //
-        return inertia('Artikel/Create');
+        return Inertia::render('Admin/Article/AddArticle');
     }
 
     /**

@@ -24,7 +24,7 @@ const AddPosition = () => {
             <AdminLayout>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
                     <div className="flex gap-x-2 items-center text-[#64748B] my-3">
-                        <Link href="">Position</Link>
+                        <Link href={route("position.index")}>Position</Link>
                         <MdKeyboardArrowRight size={25} />
                         <Link href="" className="text-[#004877]">
                             Add Position
@@ -89,7 +89,7 @@ const AddPosition = () => {
                         </div>
                         <div className="flex justify-end mt-6 gap-x-4">
                             <Link
-                                href=""
+                                href={route("position.index")}
                                 className="bg-white px-8 py-2.5 rounded-full text-[#004877] border-2 border-[#004877] font-semibold"
                             >
                                 Cancel

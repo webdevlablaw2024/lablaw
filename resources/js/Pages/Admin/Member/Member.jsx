@@ -4,7 +4,8 @@ import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const Member = () => {
+const Member = (props) => {
+    console.log(props.member)
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Name", selector: (row) => row.name, sortable: true },
@@ -51,15 +52,15 @@ const Member = () => {
                     <div className="text-center my-10">
                         <div className="flex flex-col md:flex-row justify-end items-center mb-4 mt-5">
                             <Link
-                                href=""
+                                href={route("member.create")}
                                 className="py-2.5 px-8 font-semibold text-white bg-[#004877] rounded-full"
                             >
-                                + Add New Articles
+                                + Add New Members
                             </Link>
                         </div>
                         <DataTable
                             columns={column}
-                            data={data}
+                            data={props.member}
                             pagination
                             customStyles={{
                                 headRow: {

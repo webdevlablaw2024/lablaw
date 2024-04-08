@@ -4,11 +4,21 @@ import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const Article = () => {
+const Article = (props) => {
+    console.log(props.artikel);
     const column = [
+        { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Title", selector: (row) => row.title, sortable: true },
         { name: "Author", selector: (row) => row.author, sortable: true },
-        { name: "Date", selector: (row) => row.date, sortable: true },
+        {
+            name: "Date",
+            selector: (row) => {
+                const date = new Date(row.updated_at);
+                const formattedDate = date.toISOString().split("T")[0];
+                return formattedDate;
+            },
+            sortable: true,
+        },
         {
             name: "Action",
             cell: (row) => (
@@ -35,7 +45,6 @@ const Article = () => {
         },
     ];
     const data = [
-        { name: "No", selector: (row, index) => index + 1, sortable: false },
         { title: "Article 1", author: "Author 1", date: "2024-04-01" },
         { title: "Article 2", author: "Author 2", date: "2024-04-02" },
         { title: "Article 3", author: "Author 3", date: "2024-04-03" },
@@ -52,7 +61,7 @@ const Article = () => {
                     <div className="text-center my-10">
                         <div className="flex flex-col md:flex-row justify-end items-center mb-4 mt-5">
                             <Link
-                                href=""
+                                href={route('article.create')}
                                 className="py-2.5 px-8 font-semibold text-white bg-[#004877] rounded-full"
                             >
                                 + Add New Articles
@@ -60,7 +69,7 @@ const Article = () => {
                         </div>
                         <DataTable
                             columns={column}
-                            data={data}
+                            data={props.artikel}
                             pagination
                             customStyles={{
                                 headRow: {

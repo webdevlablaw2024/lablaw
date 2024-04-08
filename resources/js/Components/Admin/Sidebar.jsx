@@ -34,12 +34,12 @@ const Sidebar = ({ isOpen }) => {
         {
             icon: <GrArticle size={20} className="mr-4" />,
             text: "Articles",
-            url: "/dashboard",
+            url: route("article.index"),
         },
         {
             icon: <GrUserManager size={20} className="mr-4" />,
             text: "Members",
-            url: "/dashboard",
+            url: route("member.index"),
         },
         {
             icon: <BsBank2 size={20} className="mr-4" />,
@@ -47,12 +47,12 @@ const Sidebar = ({ isOpen }) => {
             submenu: [
                 {
                     text: "Position ",
-                    url: "/profile-mitra",
+                    url: route("position.index"),
                     icon: <IoIosGitNetwork size={20} className="mr-4" />,
                 },
                 {
                     text: "Applicant ",
-                    url: "/layanan-mitra",
+                    url: route("applicant.index"),
                     icon: <FiUsers size={20} className="mr-4" />,
                 },
             ],

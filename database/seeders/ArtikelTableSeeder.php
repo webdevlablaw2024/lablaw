@@ -14,12 +14,12 @@ class ArtikelTableSeeder extends Seeder
     public function run(): void
     {
         //
-        $artikel = ([
-                'title' => 'Edukasi hukum',
-                'author' => 'Maleo',
-                'image' => 'artikel.jpg',
-                'description' => 'Berita hukum terkini.',
-                'tag' => 'tag1, tag2, tag3',
+        Artikel::create([
+            'title' => 'Edukasi hukum',
+            'author' => 'Maleo',
+            'image' => 'artikel.jpg',
+            'description' => 'Berita hukum terkini.',
+            'tag' => 'tag1, tag2, tag3',
         ]);
     }
 }

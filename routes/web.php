@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +53,17 @@ Route::get('/soon', function () {
     return Inertia::render('ComingSoon');
 });
 Route::get('/admin', function () {
-    return Inertia::render('Admin/Internship/Position/EditPosition');
+    return Inertia::render('Admin/Internship/Applicant');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::resources([
+        'article' => ArtikelController::class,
+        'member' => MemberController::class,
+        'position' => PositionController::class,
+        'applicant' => InternshipController::class,
+
+    ]);
 });
 
 require __DIR__.'/auth.php';
