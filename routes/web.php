@@ -55,6 +55,9 @@ Route::get('/soon', function () {
 Route::get('/admin', function () {
     return Inertia::render('Admin/Internship/Applicant');
 });
+Route::get('/news', function () {
+    return Inertia::render('NewsPage');
+});
 
 Route::prefix('admin')->group(function () {
     Route::resources([
