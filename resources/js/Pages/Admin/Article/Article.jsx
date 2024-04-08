@@ -3,9 +3,14 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import DeleteModal from "@/Components/Admin/Article/DeleteModal";
+import { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 
 const Article = (props) => {
     console.log(props.artikel);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [deleteItemId, setDeleteItemId] = useState(null);
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Title", selector: (row) => row.title, sortable: true },
@@ -24,7 +29,7 @@ const Article = (props) => {
             cell: (row) => (
                 <div className="flex space-x-2">
                     <Link
-                        href=""
+                        href={route("article.edit", row.id)}
                         className=" p-2 flex items-center gap-x-1 text-sm"
                     >
                         <FiEdit className="text-green-600" size={20} /> Edit
@@ -44,11 +49,17 @@ const Article = (props) => {
             width: "200px",
         },
     ];
-    const data = [
-        { title: "Article 1", author: "Author 1", date: "2024-04-01" },
-        { title: "Article 2", author: "Author 2", date: "2024-04-02" },
-        { title: "Article 3", author: "Author 3", date: "2024-04-03" },
-    ];
+    const handleDelete = () => {
+        Inertia.delete(route("article.destroy", deleteItemId))
+            .then(() => {
+                setModalIsOpen(false);
+                setDeleteItemId(null);
+                console.log("Menghapus item dengan ID:", deleteItemId);
+            })
+            .catch((error) => {
+                console.error("Error deleting referensi:", error);
+            });
+    };
     return (
         <>
             <AdminLayout>
@@ -61,7 +72,7 @@ const Article = (props) => {
                     <div className="text-center my-10">
                         <div className="flex flex-col md:flex-row justify-end items-center mb-4 mt-5">
                             <Link
-                                href={route('article.create')}
+                                href={route("article.create")}
                                 className="py-2.5 px-8 font-semibold text-white bg-[#004877] rounded-full"
                             >
                                 + Add New Articles
@@ -89,6 +100,11 @@ const Article = (props) => {
                         />
                     </div>
                 </div>
+                <DeleteModal
+                    isOpen={modalIsOpen}
+                    onClose={() => setModalIsOpen(false)}
+                    handleDelete={handleDelete}
+                />
             </AdminLayout>
         </>
     );

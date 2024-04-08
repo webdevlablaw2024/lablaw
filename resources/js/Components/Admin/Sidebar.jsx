@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen }) => {
         {
             icon: <GoHome size={20} className="mr-4" />,
             text: "Overview",
-            url: "/dashboard",
+            url: route("overview.index"),
         },
         {
             icon: <GrArticle size={20} className="mr-4" />,

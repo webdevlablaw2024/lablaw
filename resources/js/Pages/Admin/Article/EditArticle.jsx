@@ -1,12 +1,30 @@
 import { useState } from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const EditArticle = () => {
-    const [imagePreview, setImagePreview] = useState(null);
+const EditArticle = (props) => {
+    const [imagePreview, setImagePreview] = useState(
+        props.artikel.image
+            ? `/storage/artikel/images/${props.artikel.image}`
+            : null
+    );
+    const { data, setData, post, errors } = useForm({
+        _method: "patch",
+        id: props.artikel.id,
+        title: props.artikel.title,
+        author: props.artikel.author,
+        image: props.artikel.image,
+        description: props.artikel.description,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("article.update", { id: props.artikel.id }), data);
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -16,9 +34,9 @@ const EditArticle = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setData("image", file); // Set image data to form data
         }
     };
-    
 
     return (
         <>
@@ -34,11 +52,7 @@ const EditArticle = () => {
                     <h1 className="text-xl font-bold mb-3">Edit Article</h1>
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
-                    <form
-                        action=""
-                        className="my-6"
-                        encType="multipart/form-data"
-                    >
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
                                 htmlFor="title"
@@ -50,8 +64,17 @@ const EditArticle = () => {
                                 id="title"
                                 type="text"
                                 placeholder="Please enter title"
-                                className="border-2 border-gray-300 rounded-lg p-2"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.title ? "border-red-500" : ""
+                                }`}
+                                value={data.title || ""}
+                                onChange={(e) =>
+                                    setData("title", e.target.value)
+                                }
                             />
+                            {errors.title && (
+                                <p className="text-red-500">{errors.title}</p>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -64,8 +87,17 @@ const EditArticle = () => {
                                 id="author"
                                 type="text"
                                 placeholder="Please enter author"
-                                className="border-2 border-gray-300 rounded-lg p-2"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.author ? "border-red-500" : ""
+                                }`}
+                                value={data.author || ""}
+                                onChange={(e) =>
+                                    setData("author", e.target.value)
+                                }
                             />
+                            {errors.author && (
+                                <p className="text-red-500">{errors.author}</p>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -88,6 +120,9 @@ const EditArticle = () => {
                                     className="mt-2 w-40 h-40 object-cover"
                                 />
                             )}
+                            {errors.image && (
+                                <p className="text-red-500">{errors.image}</p>
+                            )}
                         </div>
                         <div className="my-5">
                             <label
@@ -100,7 +135,16 @@ const EditArticle = () => {
                                 id="description"
                                 theme="snow"
                                 placeholder="Please enter description"
+                                value={data.description || ""}
+                                onChange={(value) =>
+                                    setData("description", value)
+                                }
                             />
+                            {errors.description && (
+                                <p className="text-red-500">
+                                    {errors.description}
+                                </p>
+                            )}
                         </div>
 
                         <div className="flex justify-end mt-6 gap-x-4">
@@ -123,4 +167,5 @@ const EditArticle = () => {
         </>
     );
 };
+
 export default EditArticle;

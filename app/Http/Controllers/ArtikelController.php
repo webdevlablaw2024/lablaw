@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ArtikelController extends Controller
@@ -20,7 +21,6 @@ class ArtikelController extends Controller
         return Inertia::render('Admin/Article/Article', [
             'artikel' => $artikel
         ]);
-    
     }
 
     /**
@@ -37,25 +37,32 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'title'   => 'required',
             'author' => 'required',
-            // 'image' => 'required',
+            'image' => 'image|max:2048',
             'description' => 'required',
-            'tag' => 'required',
+            'tag' => '',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalName();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->move(storage_path('app/public/artikel/images/'), $imageName);
+        }
+
 
         Artikel::create([
             'title'     => $request->title,
             'author'   => $request->author,
-            // 'image'   => $request->image,
+            'image'   => $imageName,
             'description'   => $request->description,
             'tag'   => $request->tag,
         ]);
 
         //redirect
-        return redirect()->route('Admin/Article/Article')->with('success', 'Data Artikel Berhasil Ditambahkan!');
+        return redirect()->route('article.index')->with('success', 'Data Artikel Berhasil Ditambahkan!');
     }
 
     /**
@@ -76,8 +83,10 @@ class ArtikelController extends Controller
      */
     public function edit($id)
     {
-        //
-        return Inertia::render('Admin/Article/EditArticle');
+        $artikel = Artikel::where('id', $id)->first();
+        return Inertia::render('Admin/Article/EditArticle', [
+            'artikel' => $artikel
+        ]);
     }
 
     /**
@@ -85,35 +94,63 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $request->validate([
-            'title'   => 'required',
+            'title' => 'required',
             'author' => 'required',
-            // 'image' => 'required',
-            'description' => 'required',
-            'tag' => 'required',
+            'tag' => '',
+            'image' => 'image|max:2048',
         ]);
 
-        Artikel::update([
-            'title'     => $request->title,
-            'author'   => $request->author,
-            // 'image'   => $request->image,
-            'description'   => $request->description,
-            'tag'   => $request->tag,
-        ]);
+        $artikel = Artikel::find($request->id);
 
-        //redirect
-        return redirect()->route('Admin/Article/Article')->with('success', 'Data Artikel Berhasil Diupdate!');
+        if (!$artikel) {
+            return redirect()->route('article.index')->with('error', 'Artikel not found.');
+        }
+
+        $artikel->title = $request->title;
+        $artikel->author = $request->author;
+        $artikel->tag = $request->tag;
+
+       
+        if ($request->hasFile('image')) {
+            $oldImage = $artikel->image;
+
+           
+            if ($oldImage && Storage::exists('public/artikel/images/' . $oldImage)) {
+                Storage::delete('public/artikel/images/' . $oldImage);
+            }
+
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->storeAs('public/artikel/images', $imageName); 
+            $artikel->image = $imageName;
+        }
+
+        $artikel->save();
+
+        return redirect()->route('article.index')->with('success', 'Artikel updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+
+        $artikel = Artikel::find($id);
+
+        if (!$artikel) {
+            return redirect()->route('article.index')->with('error', 'Artikel not found.');
+        }
+
+        $imagePath = 'public/artikel/images/' . $artikel->image;
+        if ($artikel->image && Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
+        }
+
         $artikel->delete();
 
-        return redirect()->route('Admin/Article/Article')->with('success', 'Data Berhasil Dihapus!');
+        // Redirect with success message
+        return redirect()->route('article.index')->with('success', 'Artikel deleted successfully.');
     }
 }

@@ -1,12 +1,19 @@
 import { useState } from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const AddArticle = () => {
+    const { data, setData, post, errors } = useForm(); // Initialize useForm
     const [imagePreview, setImagePreview] = useState(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(data);
+        post(route("article.store"), data); // Send form data using post method from useForm
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -16,9 +23,9 @@ const AddArticle = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setData("image", file); // Set image data to form data
         }
     };
-    
 
     return (
         <>
@@ -34,11 +41,7 @@ const AddArticle = () => {
                     <h1 className="text-xl font-bold mb-3">Add Article</h1>
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
-                    <form
-                        action=""
-                        className="my-6"
-                        encType="multipart/form-data"
-                    >
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
                                 htmlFor="title"
@@ -51,7 +54,16 @@ const AddArticle = () => {
                                 type="text"
                                 placeholder="Please enter title"
                                 className="border-2 border-gray-300 rounded-lg p-2"
+                                value={data.title || ""}
+                                onChange={(e) =>
+                                    setData("title", e.target.value)
+                                }
                             />
+                            {errors.title && (
+                                <div className="text-red-500">
+                                    {errors.title}
+                                </div>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -65,7 +77,16 @@ const AddArticle = () => {
                                 type="text"
                                 placeholder="Please enter author"
                                 className="border-2 border-gray-300 rounded-lg p-2"
+                                value={data.author || ""}
+                                onChange={(e) =>
+                                    setData("author", e.target.value)
+                                }
                             />
+                            {errors.author && (
+                                <div className="text-red-500">
+                                    {errors.author}
+                                </div>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -88,6 +109,11 @@ const AddArticle = () => {
                                     className="mt-2 w-40 h-40 object-cover"
                                 />
                             )}
+                            {errors.image && (
+                                <div className="text-red-500">
+                                    {errors.image}
+                                </div>
+                            )}
                         </div>
                         <div className="my-5">
                             <label
@@ -100,7 +126,16 @@ const AddArticle = () => {
                                 id="description"
                                 theme="snow"
                                 placeholder="Please enter description"
+                                value={data.description || ""}
+                                onChange={(value) =>
+                                    setData("description", value)
+                                }
                             />
+                            {errors.description && (
+                                <div className="text-red-500">
+                                    {errors.description}
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex justify-end mt-6 gap-x-4">
@@ -123,4 +158,5 @@ const AddArticle = () => {
         </>
     );
 };
+
 export default AddArticle;

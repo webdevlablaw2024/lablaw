@@ -16,7 +16,7 @@ class MemberTableSeeder extends Seeder
         //
         Member::create([
             'name' => 'John Doe',
-            'gender' => 'laki-laki',
+            'gender' => 'Male',
             'image' => 'john.jpg',
             'position' => 'Web Developer',
         ]);

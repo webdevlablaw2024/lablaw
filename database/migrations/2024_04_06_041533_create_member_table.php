@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('member', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->enum('gender', ['laki-laki', 'perempuan']);
+            $table->enum('gender', ['Male', 'Female']);
             $table->string('image', 100);
             $table->string('position', 100);
             $table->timestamps();

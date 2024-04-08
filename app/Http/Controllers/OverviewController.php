@@ -17,8 +17,8 @@ class OverviewController extends Controller
     public function index()
     {
         //get all artikel
-        $artikel = Artikel::latest()->get();
-        $internship = Internship::latest()->get();
+        $artikel = Artikel::latest()->take(5)->get();
+        $internship = Internship::latest()->take(5)->get();
         $artikelCount = Artikel::count();
         $memberCount = Member::count();
         $positionCount = Position::count();

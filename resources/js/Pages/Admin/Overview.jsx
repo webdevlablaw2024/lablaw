@@ -2,15 +2,28 @@ import { Link } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "react-data-table-component";
 
-const Overview = () => {
+const Overview = (props) => {
+    console.log(props)
+     const formatDate = (dateString) => {
+         const options = { day: "2-digit", month: "long", year: "numeric" };
+         return new Date(dateString).toLocaleDateString("id-ID", options);
+     };
     const columnArticle = [
         { name: "Title", selector: (row) => row.title, sortable: true },
         { name: "Author", selector: (row) => row.author, sortable: true },
-        { name: "Date", selector: (row) => row.date, sortable: true },
+        {
+            name: "Date",
+            selector: (row) => formatDate(row.updated_at),
+            sortable: true,
+        },
     ];
     const columnApplicant = [
-        { name: "Name", selector: (row) => row.name, sortable: true },
-        { name: "Date", selector: (row) => row.date, sortable: true },
+        { name: "Name", selector: (row) => row.nama, sortable: true },
+        {
+            name: "Date",
+            selector: (row) => formatDate(row.created_at),
+            sortable: true,
+        },
     ];
     const articleData = [
         { title: "Article 1", author: "Author 1", date: "2024-04-01" },
@@ -31,26 +44,33 @@ const Overview = () => {
                     <div className="flex justify-center items-center rounded-lg border-2 bg-white py-10">
                         <div className="text-center">
                             <h2 className="text-5xl font-extrabold mb-2">
-                                102
+                                {props.artikelCount}
                             </h2>
                             <p className="text-[#828282]">All Articles</p>
                         </div>
                     </div>
                     <div className="flex justify-center items-center rounded-lg border-2 bg-white py-10">
                         <div className="text-center">
-                            <h2 className="text-5xl font-extrabold mb-2">40</h2>
+                            <h2 className="text-5xl font-extrabold mb-2">
+                                {props.memberCount}
+                            </h2>
                             <p className="text-[#828282]">All Members</p>
                         </div>
                     </div>
                     <div className="flex justify-center items-center rounded-lg border-2 bg-white py-10">
                         <div className="text-center">
-                            <h2 className="text-5xl font-extrabold mb-2">12</h2>
+                            <h2 className="text-5xl font-extrabold mb-2">
+                                {props.positionCount}
+                            </h2>
                             <p className="text-[#828282]">Position</p>
                         </div>
                     </div>
                     <div className="flex justify-center items-center rounded-lg border-2 bg-white py-10">
                         <div className="text-center">
-                            <h2 className="text-5xl font-extrabold mb-2">30</h2>
+                            <h2 className="text-5xl font-extrabold mb-2">
+                                {" "}
+                                {props.internshipCount}
+                            </h2>
                             <p className="text-[#828282]">
                                 Applicant Internship
                             </p>
@@ -64,7 +84,7 @@ const Overview = () => {
                         </h1>
                         <DataTable
                             columns={columnArticle}
-                            data={articleData}
+                            data={props.artikel}
                             customStyles={{
                                 headRow: {
                                     style: {
@@ -88,7 +108,7 @@ const Overview = () => {
                         </h1>
                         <DataTable
                             columns={columnApplicant}
-                            data={applicantData}
+                            data={props.internship}
                             customStyles={{
                                 headRow: {
                                     style: {

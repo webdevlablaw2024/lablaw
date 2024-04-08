@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -61,6 +62,7 @@ Route::get('/news', function () {
 
 Route::prefix('admin')->group(function () {
     Route::resources([
+        'overview' => OverviewController::class,
         'article' => ArtikelController::class,
         'member' => MemberController::class,
         'position' => PositionController::class,
