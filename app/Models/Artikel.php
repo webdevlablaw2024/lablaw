@@ -10,5 +10,9 @@ class Artikel extends Model
     use HasFactory;
     protected $table = 'artikel'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['users_id', 'judul', 'deskripsi', 'gambar', 'tag']; 
+    protected $fillable = ['title', 'author', 'image', 'description', 'tag']; 
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

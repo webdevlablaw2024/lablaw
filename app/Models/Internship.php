@@ -11,4 +11,8 @@ class Internship extends Model
     protected $table = 'internship'; 
     protected $primaryKey = 'id'; 
     protected $fillable = ['lowongan_internship_id', 'nama', 'alamat', 'no_telepon', 'tgl_lahir', 'portofolio', 'cv']; 
+
+    public function lowongan_internship() {
+        return $this->belongsTo(LowonganInternship::class);
+    }
 }

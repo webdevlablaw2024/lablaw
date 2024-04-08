@@ -11,4 +11,8 @@ class Chat extends Model
     protected $table = 'chat'; 
     protected $primaryKey = 'id'; 
     protected $fillable = ['users_id', 'sender', 'message']; 
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

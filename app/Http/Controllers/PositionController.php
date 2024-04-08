@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Internship;
 
-class InternshipController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //get all internship
-        $internship = Internship::latest()->get();
+         //get all position
+         $position = Position::latest()->get();
 
-        //return view
-        return inertia('Internship/Index', [
-            'internship' => $internship
-        ]);
+         //return view
+         return inertia('Position/Index', [
+             'position' => $position
+         ]);
     }
 
     /**
