@@ -34,7 +34,7 @@ const EditArticle = (props) => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
-            setData("image", file); // Set image data to form data
+            setData("image", file); 
         }
     };
 

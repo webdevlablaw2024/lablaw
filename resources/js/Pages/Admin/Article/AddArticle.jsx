@@ -6,13 +6,13 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const AddArticle = () => {
-    const { data, setData, post, errors } = useForm(); // Initialize useForm
+    const { data, setData, post, errors } = useForm(); 
     const [imagePreview, setImagePreview] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
-        post(route("article.store"), data); // Send form data using post method from useForm
+        post(route("article.store"), data); 
     };
 
     const handleImageChange = (e) => {
@@ -23,7 +23,7 @@ const AddArticle = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
-            setData("image", file); // Set image data to form data
+            setData("image", file); 
         }
     };
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class PositionController extends Controller
@@ -13,13 +14,13 @@ class PositionController extends Controller
      */
     public function index()
     {
-         //get all position
-         $position = Position::latest()->get();
+        //get all position
+        $position = Position::latest()->get();
 
         //return view
         return Inertia::render('Admin/Internship/Position/Position', [
-             'position' => $position
-         ]);
+            'position' => $position
+        ]);
     }
 
     /**
@@ -35,21 +36,29 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'position'   => 'required',
-            // 'image' => 'required',
+            'image' => 'image|max:2048',
             'description' => 'required',
         ]);
 
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalName();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->move(storage_path('app/public/position/images/'), $imageName);
+        }
+
+
         Position::create([
             'position'     => $request->position,
-            // 'image'   => $request->image,
+            'image'   => $imageName,
             'description'   => $request->description,
         ]);
 
         //redirect
-        return redirect()->route('Admin/Internship/Position/Position')->with('success', 'Data Position Berhasil Ditambahkan!');
+        return redirect()->route('position.index')->with('success', 'Data Position Berhasil Ditambahkan!');
     }
 
     /**
@@ -70,8 +79,10 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
-        return Inertia::render('Admin/Internship/Position/EditPosition');
+        $position = Position::where('id', $id)->first();
+        return Inertia::render('Admin/Internship/Position/EditPosition', [
+            'position' => $position
+        ]);
     }
 
     /**
@@ -79,21 +90,40 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $request->validate([
             'position'   => 'required',
-            // 'image' => 'required',
+            'image' => 'image|max:2048',
             'description' => 'required',
         ]);
 
-        Position::update([
-            'position'     => $request->position,
-            // 'image'   => $request->image,
-            'description'   => $request->description,
-        ]);
+        $position = Position::find($request->id);
 
-        //redirect
-        return redirect()->route('Admin/Internship/Position/Position')->with('success', 'Data Position Berhasil Diupdate!');
+        if (!$position) {
+            return redirect()->route('position.index')->with('error', 'Position not found.');
+        }
+
+        $position->position = $request->position;
+        $position->description = $request->description;
+
+
+        if ($request->hasFile('image')) {
+            $oldImage = $position->image;
+
+
+            if ($oldImage && Storage::exists('public/position/images/' . $oldImage)) {
+                Storage::delete('public/position/images/' . $oldImage);
+            }
+
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->storeAs('public/position/images', $imageName);
+            $position->image = $imageName;
+        }
+
+        $position->save();
+
+        return redirect()->route('position.index')->with('success', 'Position updated successfully.');
     }
 
     /**
@@ -101,9 +131,21 @@ class PositionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $position = Position::find($id);
+
+        if (!$position) {
+            return redirect()->route('position.index')->with('error', 'Position not found.');
+        }
+
+        $imagePath = 'public/position/images/' . $position->image;
+        if ($position->image && Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
+        }
+
         $position->delete();
 
-        return redirect()->route('Admin/Internship/Position/Article')->with('success', 'Data Berhasil Dihapus!');
+
+        return redirect()->route('position.index')->with('success', 'Position deleted successfully.');
     }
 }

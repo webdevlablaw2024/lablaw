@@ -3,8 +3,13 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useState } from "react";
+import DeleteModal from "@/Components/Admin/Position/DeleteModal";
+import { Inertia } from "@inertiajs/inertia";
 
 const Position = (props) => {
+      const [modalIsOpen, setModalIsOpen] = useState(false);
+      const [deleteItemId, setDeleteItemId] = useState(null);
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Title", selector: (row) => row.position, sortable: true },
@@ -14,7 +19,7 @@ const Position = (props) => {
             cell: (row) => (
                 <div className="flex space-x-2">
                     <Link
-                        href=""
+                        href={route("position.edit", row.id)}
                         className=" p-2 flex items-center gap-x-1 text-sm"
                     >
                         <FiEdit className="text-green-600" size={20} /> Edit
@@ -34,12 +39,17 @@ const Position = (props) => {
             width: "200px",
         },
     ];
-
-    const data = [
-        { title: "Article 1", image: "https://example.com/image1.jpg", id: 1 },
-        { title: "Article 2", image: "https://example.com/image2.jpg", id: 2 },
-        { title: "Article 3", image: "https://example.com/image3.jpg", id: 3 },
-    ];
+ const handleDelete = () => {
+     Inertia.delete(route("position.destroy", deleteItemId))
+         .then(() => {
+             setModalIsOpen(false);
+             setDeleteItemId(null);
+             console.log("Menghapus item dengan ID:", deleteItemId);
+         })
+         .catch((error) => {
+             console.error("Error deleting referensi:", error);
+         });
+ };
 
     return (
         <>
@@ -81,6 +91,11 @@ const Position = (props) => {
                         />
                     </div>
                 </div>
+                <DeleteModal
+                    isOpen={modalIsOpen}
+                    onClose={() => setModalIsOpen(false)}
+                    handleDelete={handleDelete}
+                />
             </AdminLayout>
         </>
     );

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class MemberController extends Controller
@@ -44,6 +45,7 @@ class MemberController extends Controller
             'position_id' => 'required|exists:position,id',
         ]);
 
+        $imageName = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $extension = $image->getClientOriginalName();
@@ -57,7 +59,7 @@ class MemberController extends Controller
             'gender'   => $request->gender,
             'image'   => $imageName,
             'position_id' => $request->position_id,
-           
+
         ]);
 
         //redirect
@@ -95,23 +97,42 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $request->validate([
             'name'   => 'required',
             'gender' => 'required',
-            // 'image' => 'required',
-            'position' => 'required',
+            'image' => 'image|max:2048',
+            'position_id' => 'required|exists:position,id',
         ]);
 
-        Member::update([
-            'name'     => $request->name,
-            'gender'   => $request->gender,
-            // 'image'   => $request->image,
-            'position'   => $request->position,
-        ]);
+        $member = Member::find($request->id);
 
-        //redirect
-        return redirect()->route('Admin/Member/Member')->with('success', 'Data Member Berhasil Diupdate!');
+        if (!$member) {
+            return redirect()->route('member.index')->with('error', 'member not found.');
+        }
+
+        $member->name = $request->name;
+        $member->gender = $request->gender;
+        $member->position_id = $request->position_id;
+
+
+        if ($request->hasFile('image')) {
+            $oldImage = $member->image;
+
+
+            if ($oldImage && Storage::exists('public/member/images/' . $oldImage)) {
+                Storage::delete('public/member/images/' . $oldImage);
+            }
+
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $extension;
+            $image->storeAs('public/member/images', $imageName);
+            $member->image = $imageName;
+        }
+
+        $member->save();
+
+        return redirect()->route('member.index')->with('success', 'Member updated successfully.');
     }
 
     /**
@@ -119,9 +140,21 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $member = Member::find($id);
+
+        if (!$member) {
+            return redirect()->route('member.index')->with('error', 'Member not found.');
+        }
+
+        $imagePath = 'public/member/images/' . $member->image;
+        if ($member->image && Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
+        }
+
         $member->delete();
 
-        return redirect()->route('Admin/Member/Member')->with('success', 'Data Berhasil Dihapus!');
+    
+        return redirect()->route('member.index')->with('success', 'Member deleted successfully.');
     }
 }

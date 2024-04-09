@@ -1,12 +1,29 @@
 import { useState } from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const EditPosition = () => {
-    const [imagePreview, setImagePreview] = useState(null);
+const EditPosition = (props) => {
+    const [imagePreview, setImagePreview] = useState(
+        props.position.image
+            ? `/storage/position/images/${props.position.image}`
+            : null
+    );
+    const { data, setData, post, errors } = useForm({
+        _method: "patch",
+        id: props.position.id,
+        position: props.position.position,
+        description: props.position.description,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("position.update", { id: props.position.id }), data);
+        console.log(data);
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -16,6 +33,7 @@ const EditPosition = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setData("image", file);
         }
     };
 
@@ -34,6 +52,7 @@ const EditPosition = () => {
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
                     <form
+                        onSubmit={handleSubmit}
                         action=""
                         className="my-6"
                         encType="multipart/form-data"
@@ -46,11 +65,22 @@ const EditPosition = () => {
                                 Position*
                             </label>
                             <input
-                                id="name"
+                                id="position"
                                 type="text"
                                 placeholder="Please enter position"
-                                className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.position ? "border-red-500" : ""
+                                }`}
+                                value={data.position || ""}
+                                onChange={(e) =>
+                                    setData("position", e.target.value)
+                                }
                             />
+                            {errors.position && (
+                                <p className="text-red-500">
+                                    {errors.position}
+                                </p>
+                            )}
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
@@ -63,6 +93,7 @@ const EditPosition = () => {
                                 id="gambar"
                                 type="file"
                                 name="gambar"
+                                accept="image/*"
                                 className="border-2 border-[#D8DBDF] p-2 bg-[#FBFBFB] rounded-lg"
                                 onChange={handleImageChange}
                             />
@@ -85,6 +116,10 @@ const EditPosition = () => {
                                 id="description"
                                 theme="snow"
                                 placeholder="Please enter description"
+                                value={data.description || ""}
+                                onChange={(value) =>
+                                    setData("description", value)
+                                }
                             />
                         </div>
                         <div className="flex justify-end mt-6 gap-x-4">

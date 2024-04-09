@@ -1,11 +1,29 @@
 import { useState } from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const EditMember = (props) => {
-     const positions = props.positions;
-    const [imagePreview, setImagePreview] = useState(null);
+    const positions = props.positions;
+    const [imagePreview, setImagePreview] = useState(
+        props.member.image
+            ? `/storage/member/images/${props.member.image}`
+            : null
+    );
+    const { data, setData, post, errors } = useForm({
+        _method: "patch",
+        id: props.member.id,
+        name: props.member.name,
+        gender: props.member.gender,
+        position_id: props.member.position_id,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("member.update", { id: props.member.id }), data);
+        console.log(data);
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -15,6 +33,7 @@ const EditMember = (props) => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setData("image", file); // Set image data to form data
         }
     };
 
@@ -33,6 +52,7 @@ const EditMember = (props) => {
                 </div>
                 <div className="p-4 border-2 border-gray-200 rounded-xl px-5 md:px-8 lg:px-11 xl:px-14 bg-white mt-3">
                     <form
+                        onSubmit={handleSubmit}
                         action=""
                         className="my-6"
                         encType="multipart/form-data"
@@ -49,6 +69,10 @@ const EditMember = (props) => {
                                 type="text"
                                 placeholder="Please enter name"
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                value={data.name}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
                             />
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
@@ -60,7 +84,12 @@ const EditMember = (props) => {
                             </label>
                             <select
                                 id="gender"
+                                name="gender"
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                value={data.gender}
+                                onChange={(e) =>
+                                    setData("gender", e.target.value)
+                                }
                             >
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
@@ -78,6 +107,7 @@ const EditMember = (props) => {
                                 id="gambar"
                                 type="file"
                                 name="gambar"
+                                accept="image/*"
                                 className="border-2 border-[#D8DBDF] p-2 bg-[#FBFBFB] rounded-lg"
                                 onChange={handleImageChange}
                             />
@@ -98,7 +128,12 @@ const EditMember = (props) => {
                             </label>
                             <select
                                 id="position"
+                                name="position_id"
                                 className="border-2 border-[#D8DBDF] bg-[#FBFBFB] rounded-lg"
+                                value={data.position_id}
+                                onChange={(e) =>
+                                    setData("position_id", e.target.value)
+                                }
                             >
                                 <option value="">Select position</option>
                                 {positions.map((pos, index) => (

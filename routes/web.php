@@ -60,7 +60,7 @@ Route::get('/news', function () {
     return Inertia::render('NewsPage');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
         'overview' => OverviewController::class,
         'article' => ArtikelController::class,
@@ -71,4 +71,4 @@ Route::prefix('admin')->group(function () {
     ]);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

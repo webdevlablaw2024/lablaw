@@ -2,10 +2,15 @@ import { Link } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "react-data-table-component";
 import { FiEdit } from "react-icons/fi";
+import { Inertia } from "@inertiajs/inertia";
 import { RiDeleteBinLine } from "react-icons/ri";
+import DeleteModal from "@/Components/Admin/Member/DeleteModal";
+import { useState } from "react";
 
 const Member = (props) => {
     console.log(props.member);
+      const [modalIsOpen, setModalIsOpen] = useState(false);
+      const [deleteItemId, setDeleteItemId] = useState(null);
     const column = [
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         { name: "Name", selector: (row) => row.name, sortable: true },
@@ -39,11 +44,17 @@ const Member = (props) => {
             width: "200px",
         },
     ];
-    const data = [
-        { name: "Article 1", position: "Author 1", date: "2024-04-01" },
-        { name: "Article 2", position: "Author 2", date: "2024-04-02" },
-        { name: "Article 3", position: "Author 3", date: "2024-04-03" },
-    ];
+     const handleDelete = () => {
+         Inertia.delete(route("member.destroy", deleteItemId))
+             .then(() => {
+                 setModalIsOpen(false);
+                 setDeleteItemId(null);
+                 console.log("Menghapus item dengan ID:", deleteItemId);
+             })
+             .catch((error) => {
+                 console.error("Error deleting referensi:", error);
+             });
+     };
     return (
         <>
             <AdminLayout>
@@ -84,6 +95,11 @@ const Member = (props) => {
                         />
                     </div>
                 </div>
+                <DeleteModal
+                    isOpen={modalIsOpen}
+                    onClose={() => setModalIsOpen(false)}
+                    handleDelete={handleDelete}
+                />
             </AdminLayout>
         </>
     );

@@ -45,6 +45,7 @@ class ArtikelController extends Controller
             'tag' => '',
         ]);
 
+        $imageName = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $extension = $image->getClientOriginalName();
@@ -150,7 +151,6 @@ class ArtikelController extends Controller
 
         $artikel->delete();
 
-        // Redirect with success message
         return redirect()->route('article.index')->with('success', 'Artikel deleted successfully.');
     }
 }
