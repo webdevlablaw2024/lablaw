@@ -130,5 +130,47 @@ jobs:
             ln -s -f "${STORAGE_PATH}" "${RELEASE_PATH}"
             ln -s -f "${RELEASE_PATH}/public" "${BASE_PATH}"
             ln -s -f "${STORAGE_PATH}/app/public" "${RELEASE_PATH}/public/storage"
-            ln -s -n -f "${RELEASE_PATH}" "${ACTIVE_RELEASE_PATH}"                    
+            ln -s -n -f "${RELEASE_PATH}" "${ACTIVE_RELEASE_PATH}"  
+
+  run-after-hooks:
+    name: "After hook"
+    runs-on: ubuntu-latest
+    needs: [create-depeloyment-artifacts, prepare-release-on-server, activate-release]
+    steps:
+      - name: Run after hooks
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          RELEASE_PATH: ${{ secrets.DIR }}/releases/${{ github.sha }}
+          ACTIVE_RELEASE_PATH: ${{ secrets.DIR }}/current
+          STORAGE_PATH: ${{ secrets.DIR }}/storage
+          BASE_PATH: ${{ secrets.DIR }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH
+          script: |
+            echo ${GITHUB_SHA}
+
+  clean-up:
+    name: "Clean Up"
+    runs-on: ubuntu-latest
+    needs: [create-depeloyment-artifacts, prepare-release-on-server, activate-release, run-after-hooks]
+    steps:
+      - name: Clean up
+        uses: appleboy/ssh-action@master
+        env:
+          RELEASE_PATH: ${{ secrets.DIR }}/releases
+          ARTIFACTS_PATH: ${{ secrets.DIR }}/artifacts
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          envs: RELEASE_PATH, ARTIFACTS_PATH
+          script: |
+            cd $RELEASE_PATH && ls -t -1 | tail -n +2 | xargs rm -rf
+            cd $ARTIFACTS_PATH && ls -t -1 | tail -n +2 | xargs rm -rf                            
         
