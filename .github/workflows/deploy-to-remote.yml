@@ -125,7 +125,6 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH
           script: |
-            echo ${{ secrets.ENV }}
             printf "%s" "$LARAVEL_ENV" > "${BASE_PATH}/.env"
             ln -s -f "${STORAGE_PATH}" "${RELEASE_PATH}"
             ln -s -f "${RELEASE_PATH}/public" "${BASE_PATH}"
