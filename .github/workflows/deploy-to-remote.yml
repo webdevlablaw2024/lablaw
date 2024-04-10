@@ -130,7 +130,6 @@ jobs:
             ln -s -f "${RELEASE_PATH}/public" "${BASE_PATH}"
             ln -s -f "${STORAGE_PATH}/app/public" "${RELEASE_PATH}/public/storage"
             ln -s -n -f "${RELEASE_PATH}" "${ACTIVE_RELEASE_PATH}"  
-            service php8.2-fpm reload
 
   run-after-hooks:
     name: "After hook"
