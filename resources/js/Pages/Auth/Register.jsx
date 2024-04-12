@@ -32,7 +32,7 @@ export default function Register() {
             <Head title="Register" />
 
             <img
-                src="build/assets/images/logo-lablaw.png"
+                src="/images/logo-lablaw.png"
                 className="w-[60px] h-[60px]"
                 alt="Logo LabLaw"
             />

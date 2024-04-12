@@ -28,17 +28,17 @@ const ComingSoon = () => {
                         </p>
                         <div className="flex gap-8 mt-8 justify-center">
                             <Link className="w-5 h-5">
-                                <img src="build/assets/vector/x.png" alt="" />
+                                <img src="/vector/x.png" alt="" />
                             </Link>
                             <Link className="w-5 h-5">
                                 <img
-                                    src="build/assets/vector/thread.png"
+                                    src="/vector/thread.png"
                                     alt=""
                                 />
                             </Link>
                             <Link className="w-5 h-5">
                                 <img
-                                    src="build/assets/vector/instagram.png"
+                                    src="/vector/instagram.png"
                                     alt=""
                                 />
                             </Link>
@@ -47,7 +47,7 @@ const ComingSoon = () => {
                 </div>
                 <div className="bg-bottom bg-cover h-1/6 md:h-1/4">
                     <img
-                        src="build/assets/images/asset1.png"
+                        src="/images/asset1.png"
                         alt="Your Image"
                         className="w-full h-full object-cover filter grayscale"
                     />

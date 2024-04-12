@@ -3,7 +3,7 @@ export default function NewsCard({ classname = "", children, ...props }) {
         <>
             <div className={`mb-4 md:mb-0 ` + classname}>
                 <img
-                    src="build/assets/images/hero_image.png"
+                    src="/images/hero_image.png"
                     alt="News"
                     className="object-cover rounded-md"
                 />

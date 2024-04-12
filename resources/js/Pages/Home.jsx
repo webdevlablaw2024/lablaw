@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <>
             <Header />
-            <div className="min-h-screen w-full bg-cover bg-center bg-[url('build/assets/images/background-3.png')] flex items-center justify-start relative">
+            <div className="min-h-screen w-full bg-cover bg-center bg-[url('/images/background-3.png')] flex items-center justify-start relative">
                 <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50"></div>
                 <div className="ml-5 lg:ml-10 xl:ml-14 2xl:ml-28 z-10 relative">
                     <h1 className="text-4xl lg:text-6xl font-bold lg:font-extrabold tracking-wider text-white text-start w-4/5">
@@ -27,7 +27,7 @@ const Home = () => {
 
                     <div className="flex mb-5">
                         <img
-                            src="build/assets/images/hero_image.png"
+                            src="/images/hero_image.png"
                             alt="Product"
                             className="w-32 h-28 rounded-md lg:rounded-xl lg:w-48 lg:h-44"
                         />

@@ -6,7 +6,7 @@ const Footer = () => {
             <footer className="bg-[#001624]">
                 <div className="mx-auto w-full max-w-screen-xl mt-20">
                     <img
-                        src="build/assets/images/logo.png"
+                        src="/images/logo.png"
                         alt=""
                         className="px-4 pt-20 w-32 h-44 lg:w-40 lg:h-52"
                     />
@@ -64,14 +64,14 @@ const Footer = () => {
                                 href="#"
                                 className="w-10 h-10 border rounded-full p-2"
                             >
-                                <img src="build/assets/vector/x.png" alt="" />
+                                <img src="/vector/x.png" alt="" />
                             </Link>
                             <Link
                                 href="#"
                                 className="w-10 h-10 border rounded-full p-2"
                             >
                                 <img
-                                    src="build/assets/vector/thread.png"
+                                    src="/vector/thread.png"
                                     alt=""
                                 />
                             </Link>
@@ -80,7 +80,7 @@ const Footer = () => {
                                 className="w-10 h-10 border rounded-full p-2"
                             >
                                 <img
-                                    src="build/assets/vector/instagram.png"
+                                    src="/vector/instagram.png"
                                     alt=""
                                 />
                             </Link>

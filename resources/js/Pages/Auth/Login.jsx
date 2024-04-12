@@ -38,7 +38,7 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <img
-                src="build/assets/images/logo-lablaw.png"
+                src="/images/logo-lablaw.png"
                 className="w-20 h-20"
                 alt="Logo LabLaw"
             />

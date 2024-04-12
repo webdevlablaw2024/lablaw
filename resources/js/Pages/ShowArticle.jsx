@@ -35,19 +35,19 @@ const ShowArticle = () => {
                             </div>
                             <div className="flex gap-4">
                                 <div
-                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('build/assets/images/instagram.png')]"
+                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('/images/instagram.png')]"
                                     // style="background-image: url(instagram.png)"
                                 ></div>
                                 <div
-                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('build/assets/images/twitter.jpg')]"
+                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('/images/twitter.jpg')]"
                                     // style="background-image: url(twitter.jpg)"
                                 ></div>
                                 <div
-                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('build/assets/images/whatsapp.jpg')]"
+                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('/images/whatsapp.jpg')]"
                                     // style="background-image: url(whatsapp.jpg)"
                                 ></div>
                                 <div
-                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('build/assets/images/facebook.png')]"
+                                    className="h-7 w-7 bg-cover bg-no-repeat bg-center rounded-lg bg-[url('/images/facebook.png')]"
                                     // style="background-image: url(facebook.png)"
                                 ></div>
                             </div>

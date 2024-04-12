@@ -14,7 +14,7 @@ const NewsPage = () => {
                         className="relative h-48 md:h-64 xl:h-72 w-full flex items-end justify-start text-left bg-cover bg-center mb-5 rounded-lg"
                         style={{
                             backgroundImage:
-                                "url('build/assets/images/hero_image.png')",
+                                "url('/images/hero_image.png')",
                         }}
                     >
                         <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900 rounded-lg"></div>
