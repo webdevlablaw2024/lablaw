@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('portofolio', 100);
             $table->string('cv', 100);
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
