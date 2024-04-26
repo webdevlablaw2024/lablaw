@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nama_lowongan', 100);
             $table->text('deskripsi');
             $table->enum('area', ['onsite', 'remote', 'hybrid']);
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

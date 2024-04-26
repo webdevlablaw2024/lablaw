@@ -89,4 +89,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     ]);
 });
 
+// routes CRUD artikel
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+Route::post('/artikel/store', [ArtikelController::class, 'store'])->name('artikel.store');
+Route::get('/artikel/show/{id}', [RatingController::class, 'show'])->name('article.show');
+Route::get('/artikel/edit/{id}', [ArtikelController::class, 'edit'])->name('artikel.edit');
+Route::patch('/artikel/update', [ArtikelController::class, 'update'])->name('artikel.update');
+Route::delete('/artikel/delete/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+
 require __DIR__ . '/auth.php';

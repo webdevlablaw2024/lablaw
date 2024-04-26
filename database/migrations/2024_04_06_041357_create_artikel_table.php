@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('image', 100)->nullable();
             $table->text('description');
             $table->string('tag', 100)->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
