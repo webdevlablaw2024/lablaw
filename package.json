@@ -27,7 +27,6 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@heroicons/react": "^2.1.1",
         "@inertiajs/inertia": "^0.11.1",
-        "flowbite-react": "^0.7.2",
         "react-data-table-component": "^7.6.2",
         "react-quill": "^2.0.0",
         "react-trix": "^0.10.2"
