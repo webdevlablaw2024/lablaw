@@ -59,6 +59,21 @@ Route::get('/admin', function () {
 Route::get('/news', function () {
     return Inertia::render('NewsPage');
 });
+Route::get('/about', function () {
+    return Inertia::render('AboutPage');
+});
+Route::get('/team', function () {
+    return Inertia::render('TeamPage');
+});
+Route::get('/internship', function(){
+    return Inertia::render('InternshipPage');
+});
+Route::get('/position-detail', function(){
+    return Inertia::render('PositionDetailPage');
+});
+Route::get('/form', function(){
+    return Inertia::render('FormPage');
+});
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
