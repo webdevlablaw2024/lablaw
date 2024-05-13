@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OverviewController;
@@ -74,6 +75,8 @@ Route::get('/position-detail', function(){
 Route::get('/form', function(){
     return Inertia::render('FormPage');
 });
+Route::get('/news', [HomeController::class, 'news'])->name('news');
+Route::get('/news/{id}', [HomeController::class, 'showNews'])->name('news.detail');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
