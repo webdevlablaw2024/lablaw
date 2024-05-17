@@ -10,9 +10,20 @@ class Internship extends Model
     use HasFactory;
     protected $table = 'internship'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['lowongan_internship_id', 'nama', 'alamat', 'no_telepon', 'tgl_lahir', 'portofolio', 'cv']; 
+    protected $fillable = [
+        'position_id', 
+        'name', 
+        'phone',
+        'email', 
+        'institution',
+        'major',
+        'colleger_year',
+        'reason',
+        'summary',
+        'cv'
+    ]; 
 
-    public function lowongan_internship() {
-        return $this->belongsTo(LowonganInternship::class);
+    public function position() {
+        return $this->belongsTo(Position::class);
     }
 }

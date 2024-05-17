@@ -37,9 +37,10 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'position'   => 'required',
-            'image' => 'image|max:2048',
-            'description' => 'required',
+            'position'       => 'required',
+            'image'          => 'image|max:2048',
+            'description'    => 'required',
+            'area'           => 'required',
         ]);
 
         $imageName = null;
@@ -52,9 +53,10 @@ class PositionController extends Controller
 
 
         Position::create([
-            'position'     => $request->position,
-            'image'   => $imageName,
-            'description'   => $request->description,
+            'position'       => $request->position,
+            'image'          => $imageName,
+            'description'    => $request->description,
+            'area'           => $request->area,
         ]);
 
         //redirect
@@ -91,9 +93,10 @@ class PositionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'position'   => 'required',
-            'image' => 'image|max:2048',
-            'description' => 'required',
+            'position'       => 'required',
+            'image'          => 'image|max:2048',
+            'description'    => 'required',
+            'area'           => 'required',
         ]);
 
         $position = Position::find($request->id);

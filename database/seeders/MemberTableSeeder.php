@@ -15,10 +15,10 @@ class MemberTableSeeder extends Seeder
     {
         //
         Member::create([
-            'name' => 'John Doe',
-            'gender' => 'male',
-            'image' => 'john.jpg',
-            'position_id' => 1,
+            'position_id'   => 1,
+            'name'          => 'John Doe',
+            'gender'        => 'male',
+            'image'         => 'john.jpg',
         ]);
 
     }
