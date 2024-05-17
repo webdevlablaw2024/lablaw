@@ -15,9 +15,10 @@ class PositionTableSeeder extends Seeder
     {
         //
         Position::create([
-            'position' => 'Web Developer',
-            'image' => 'john.jpg',
-            'description' => 'Membuat website',
+            'position'       => 'Web Developer',
+            'image'          => 'john.jpg',
+            'description'    => 'Membuat website',
+            'area'           => 'remote',
         ]);
 
     }

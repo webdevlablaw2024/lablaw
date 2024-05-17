@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Internship;
+use App\Models\Position;
 use Inertia\Inertia;
 
 class InternshipController extends Controller
@@ -14,7 +15,7 @@ class InternshipController extends Controller
     public function index()
     {
         //get all internship
-        $internship = Internship::with('lowongan_internship')->latest()->get();
+        $internship = Internship::with('position')->latest()->get();
 
         //return view
         return Inertia::render('Admin/Internship/Applicant', [
@@ -38,23 +39,29 @@ class InternshipController extends Controller
     {
         //
         $request->validate([
-            'lowongan_internship_id'   => 'required',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'no_telepon' => 'required',
-            'tgl_lahir' => 'required',
-            'portofolio' => 'required',
-            'cv' => 'required',
+            'position_id'     => 'required',
+            'name'            => 'required',
+            'phone'           => 'required',
+            'email'           => 'required',
+            'institution'     => 'required',
+            'major'           => 'required',
+            'college_year'    => 'required',
+            'reason'          => 'required',
+            'summary'         => 'requiered',
+            'cv'              => 'required',
         ]);
 
         Artikel::create([
-            'lowongan_internship_id'   => $request->lowongan_internship_id,
-            'nama'   => $request->nama,
-            'alamat'   => $request->alamat,
-            'no_telepon'   => $request->no_telepon,
-            'tgl_lahir'   => $request->tgl_lahir,
-            'portofolio'   => $request->portofolio,
-            'cv'   => $request->cv,
+            'position_id'    => $request->position_id,
+            'name'           => $request->name,
+            'phone'          => $request->phone,
+            'email'          => $request->email,
+            'institution'    => $request->institution,
+            'major'          => $request->major,
+            'college_year'   => $request->college_year,
+            'reason'         => $request->reason,
+            'summary'        => $request->summary,
+            'cv'             => $request->cv,
         ]);
 
         //redirect
@@ -67,7 +74,7 @@ class InternshipController extends Controller
     public function show($id)
     {
         //
-        $internship = Internship::with('lowongan_internship')->find($id);
+        $internship = Internship::with('position')->find($id);
 
         return Inertia::render('Artikel/Show', [
             'artikel' => $artikel
@@ -90,23 +97,29 @@ class InternshipController extends Controller
     {
         //
         $request->validate([
-            'lowongan_internship_id'   => 'required',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'no_telepon' => 'required',
-            'tgl_lahir' => 'required',
-            'portofolio' => 'required',
-            'cv' => 'required',
+            'position_id'     => 'required',
+            'name'            => 'required',
+            'phone'           => 'required',
+            'email'           => 'required',
+            'institution'     => 'required',
+            'major'           => 'required',
+            'college_year'    => 'required',
+            'reason'          => 'required',
+            'summary'         => 'requiered',
+            'cv'              => 'required',
         ]);
 
         Artikel::update([
-            'lowongan_internship_id'    => $request->lowongan_internship_id,
-            'nama'   => $request->nama,
-            'alamat'   => $request->alamat,
-            'no_telepon'   => $request->no_telepon,
-            'tgl_lahir'   => $request->tgl_lahir,
-            'portofolio'   => $request->portofolio,
-            'cv'   => $request->cv,
+            'position_id'    => $request->position_id,
+            'name'           => $request->name,
+            'phone'          => $request->phone,
+            'email'          => $request->email,
+            'institution'    => $request->institution,
+            'major'          => $request->major,
+            'college_year'   => $request->college_year,
+            'reason'         => $request->reason,
+            'summary'        => $request->summary,
+            'cv'             => $request->cv,
         ]);
 
         return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Applicant Berhasil Diupdate!');

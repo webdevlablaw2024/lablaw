@@ -15,13 +15,16 @@ class InternshipTableSeeder extends Seeder
     {
         //
         Internship::create([
-            'lowongan_internship_id' => 1,
-            'nama' => 'John Doe',
-            'alamat' => '123 Street',
-            'no_telepon' => '1234567890',
-            'tgl_lahir' => '2000-01-01',
-            'portofolio' => 'portofolio.pdf',
-            'cv' => 'cv.pdf',
+            'position_id'    => 1,
+            'name'           => 'John Doe',
+            'phone'          => '085111222333',
+            'email'          => 'john@gmail.com',
+            'institution'    => 'universitas',
+            'major'          => 'informatika',
+            'college_year'   => '2020',
+            'reason'         => 'coba reason',
+            'summary'        => 'coba mendeskripsikan',
+            'cv'             => 'cv_ku.pdf',
         ]);
 
     }
