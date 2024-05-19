@@ -29,8 +29,10 @@
         "@inertiajs/inertia": "^0.11.1",
         "moment": "^2.30.1",
         "react-data-table-component": "^7.6.2",
+        "react-dropzone": "^14.2.3",
         "react-icons": "^5.2.1",
         "react-quill": "^2.0.0",
-        "react-trix": "^0.10.2"
+        "react-trix": "^0.10.2",
+        "sweetalert2": "^11.11.0"
     }
 }

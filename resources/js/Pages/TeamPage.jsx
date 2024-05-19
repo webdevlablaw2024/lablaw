@@ -51,7 +51,7 @@ const TeamPage = () => {
                     </h4>
                     <div className="flex justify-between items-center">
                         <a
-                            href=""
+                            href="/internship"
                             className="border-2 bg-[#FFFFFF] border-[#BBBBBB] font-bold py-2 px-6 rounded-lg hover:bg-[#BBBBBB] transition duration-300 ease-in-out"
                         >
                             Explore open roles

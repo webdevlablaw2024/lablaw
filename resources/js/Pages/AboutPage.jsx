@@ -5,6 +5,9 @@ import OurValuesItem from "@/Components/OurValuesItem";
 import SubtitleText from "@/Components/SubtitleText";
 import TitleText from "@/Components/TitleText";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 const AboutPage = () => {
     return (
         <>
@@ -30,16 +33,18 @@ const AboutPage = () => {
                 </div>
             </div>
             <div className="mx-[160px] mb-20">
-                <div className="w-full text-center">
-                    <TitleText classname="mb-9">
-                        Work Together, <br /> Dream Together
+                <div className="w-full flex flex-col items-center">
+                    <TitleText classname="w-3/4 text-center">
+                        Toward Legal Enlightenment: Lab Law, Your Gateway to
+                        Informed Legal Empowerment.
                     </TitleText>
-                    <SubtitleText classname="mb-9">
-                        Coming together is a beginning, staying together is
-                        progress, and working together is success.
+                    <SubtitleText classname="w-3/5 text-center">
+                        We are thrilled to present ourselves as a company
+                        committed to shaping the legal landscape, one innovative
+                        solution at a time.
                     </SubtitleText>
                     <img
-                        src="/images/hero_image.png"
+                        src="/images/about-team.jpg"
                         className="h-[400px] w-4/5 object-cover rounded-lg mb-9"
                         alt="Team Image"
                     />
@@ -118,9 +123,17 @@ const AboutPage = () => {
                         />
                     </div>
 
-                    <TitleText>
-                        We Collaborate With 50+ Partners Companies
-                    </TitleText>
+                    <TitleText>Want to meet our team?</TitleText>
+                    <SubtitleText>
+                        Let's see who the great minds are in this company.
+                    </SubtitleText>
+                    <a
+                        href="/soon"
+                        className="rounded-full border-2 px-8 py-3 border-[#E2E2E2] font-bold text-lg"
+                    >
+                        <FontAwesomeIcon icon={faEye} className="mr-2" /> View
+                        Team
+                    </a>
                 </div>
             </div>
             <Footer />
