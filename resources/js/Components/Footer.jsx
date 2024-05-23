@@ -18,9 +18,8 @@ const Footer = () => {
                             <h1 className="text-white text-2xl mb-6">
                                 info@lablaw.id
                             </h1>
-                            <p className="text-[#D5D5D5]">
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry.
+                            <p className="text-[#D5D5D5] capitalize">
+                            Legal education platform & firm
                             </p>
                         </div>
                         <div>

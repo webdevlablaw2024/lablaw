@@ -1,6 +1,6 @@
 export default function KeySuccessCard({ classname="", icon, title, description}) {
   return (
-    <div className={`flex flex-col gap-2 justify-center items-center border-2 rounded-md p-7`+classname}>
+    <div className={`flex flex-col gap-2 justify-center items-center border-2 rounded-md p-7 mb-5 `+classname}>
       <div className="rounded-full p-4 bg-[#EDEDED]">
         <img src={icon} alt="Icon" />
       </div>
