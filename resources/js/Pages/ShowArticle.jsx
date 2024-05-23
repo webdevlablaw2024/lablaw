@@ -3,9 +3,9 @@ import Header from "@/Components/Navbar";
 import { Link } from "@inertiajs/react";
 import moment from "moment";
 const ShowArticle = ({ artikel, artikels }) => {
-     const truncateText = (text) => {
-         return text.length > 8 ? text.substr(0, 10) + "..." : text;
-     };
+    const truncateText = (text) => {
+        return text.length > 8 ? text.substr(0, 10) + "..." : text;
+    };
     return (
         <>
             <Header />
@@ -54,7 +54,9 @@ const ShowArticle = ({ artikel, artikels }) => {
                     <div className="h-[350px] w-full">
                         <div
                             className="h-full w-full bg-cover bg-no-repeat bg-center rounded-lg"
-                            style={{ backgroundImage: `url(${artikel.image})` }}
+                            style={{
+                                backgroundImage: `url(${window.location.origin}/storage/artikel/images/${artikel.image})`,
+                            }}
                         ></div>
                     </div>
                     <br />
@@ -106,7 +108,7 @@ const ShowArticle = ({ artikel, artikels }) => {
                                 <div
                                     className="h-[50px] w-[20%] sm:w-[30%] lg:w-[20%] bg-cover bg-no-repeat bg-center rounded-lg"
                                     style={{
-                                        backgroundImage: `url(${article.image})`,
+                                        backgroundImage: `url(${window.location.origin}/storage/artikel/images/${article.image})`,
                                     }}
                                 ></div>
                                 <div className="w-[80%] sm:w-[70%] lg:w-[80%]">
