@@ -66,17 +66,18 @@ Route::get('/about', function () {
 Route::get('/team', function () {
     return Inertia::render('TeamPage');
 });
-Route::get('/internship', function(){
+Route::get('/internship', function () {
     return Inertia::render('InternshipPage');
 });
-Route::get('/position-detail', function(){
+Route::get('/position-detail', function () {
     return Inertia::render('PositionDetailPage');
 });
-Route::get('/form', function(){
+Route::get('/form', function () {
     return Inertia::render('FormPage');
 });
 Route::get('/news', [HomeController::class, 'news'])->name('news');
 Route::get('/news/{id}', [HomeController::class, 'showNews'])->name('news.detail');
+
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
@@ -85,21 +86,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'member' => MemberController::class,
         'position' => PositionController::class,
         'applicant' => InternshipController::class,
-
     ]);
-    Route::prefix('admin')->middleware(['auth'])->group(function () {
-        Route::resources([
-            'overview' => OverviewController::class,
-            'article' => ArtikelController::class,
-            'member' => MemberController::class,
-            'position' => PositionController::class,
-            'applicant' => InternshipController::class,
-        ]);
 
-        Route::put('/position/changeStatus/{id}', [PositionController::class, 'changeStatus'])->name('position.changeStatus');
-    });
-
+    Route::put('/position/changeStatus/{id}', [PositionController::class, 'changeStatus'])->name('position.changeStatus');
 });
+
+
 
 // routes CRUD artikel
 /*
@@ -110,6 +102,6 @@ Route::get('/artikel/show/{id}', [RatingController::class, 'show'])->name('artic
 Route::get('/artikel/edit/{id}', [ArtikelController::class, 'edit'])->name('artikel.edit');
 Route::patch('/artikel/update', [ArtikelController::class, 'update'])->name('artikel.update');
 Route::delete('/artikel/delete/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
-*/  
+*/
 
 require __DIR__ . '/auth.php';
