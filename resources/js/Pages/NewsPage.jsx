@@ -44,7 +44,7 @@ const NewsPage = ({ artikel }) => {
                             </Link>
                         </main>
                     </div>
-                    <div className="flex gap-5">
+                    <div className="grid grid-cols-3 gap-5">
                         {articlesTop.map((article, index) => (
                             <NewsCard
                                 key={index}
