@@ -10,7 +10,12 @@ class Member extends Model
     use HasFactory;
     protected $table = 'member'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['name', 'gender', 'image', 'position_id'];
+    protected $fillable = [
+        'position_id',
+        'name', 
+        'gender', 
+        'image'
+    ];
 
 
     public function position()

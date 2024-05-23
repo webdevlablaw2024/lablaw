@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('internship', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lowongan_internship_id');
-            $table->string('nama', 100);
-            $table->string('alamat', 100);
-            $table->string('no_telepon', 15);
-            $table->date('tgl_lahir');
-            $table->string('portofolio', 100);
+            $table->unsignedBigInteger('position_id');
+            $table->string('name', 100);
+            $table->string('phone', 15);
+            $table->string('email', 100);
+            $table->string('institution', 100);
+            $table->string('major', 100);
+            $table->year('college_year');
+            $table->string('reason', 100);
+            $table->longText('summary');
             $table->string('cv', 100);
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
