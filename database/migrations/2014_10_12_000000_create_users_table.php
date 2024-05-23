@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'konsultan', 'klien'])->default('klien');
             $table->rememberToken();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

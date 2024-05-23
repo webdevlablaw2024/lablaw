@@ -87,6 +87,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'applicant' => InternshipController::class,
 
     ]);
+    Route::prefix('admin')->middleware(['auth'])->group(function () {
+        Route::resources([
+            'overview' => OverviewController::class,
+            'article' => ArtikelController::class,
+            'member' => MemberController::class,
+            'position' => PositionController::class,
+            'applicant' => InternshipController::class,
+        ]);
+
+        Route::put('/position/changeStatus/{id}', [PositionController::class, 'changeStatus'])->name('position.changeStatus');
+    });
+
 });
 
 // routes CRUD artikel

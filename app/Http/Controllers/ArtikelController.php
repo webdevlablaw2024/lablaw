@@ -112,11 +112,11 @@ class ArtikelController extends Controller
         $artikel->author = $request->author;
         $artikel->tag = $request->tag;
 
-       
+
         if ($request->hasFile('image')) {
             $oldImage = $artikel->image;
 
-           
+
             if ($oldImage && Storage::exists('public/artikel/images/' . $oldImage)) {
                 Storage::delete('public/artikel/images/' . $oldImage);
             }
@@ -124,7 +124,7 @@ class ArtikelController extends Controller
             $image = $request->file('image');
             $extension = $image->getClientOriginalExtension();
             $imageName = date('YmdHis') . "." . $extension;
-            $image->storeAs('public/artikel/images', $imageName); 
+            $image->storeAs('public/artikel/images', $imageName);
             $artikel->image = $imageName;
         }
 
