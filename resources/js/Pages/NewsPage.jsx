@@ -72,11 +72,12 @@ const NewsPage = ({ artikel }) => {
 
                     <div className="h-[1px] lg:h-0.25 w-full bg-gray-500 mb-10"></div>
 
-                    <div className="gap-10 md:flex">
+                    <div className="gap-10 md:flex justify-center">
+                        <p className="">There are no events available</p>
+                        {/* <NewsCard classname="text-xl" />
                         <NewsCard classname="text-xl" />
                         <NewsCard classname="text-xl" />
-                        <NewsCard classname="text-xl" />
-                        <NewsCard classname="text-xl" />
+                        <NewsCard classname="text-xl" /> */}
                     </div>
                 </div>
             </div>
