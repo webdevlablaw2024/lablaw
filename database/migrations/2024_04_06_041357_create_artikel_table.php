@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
-            $table->string('author', 100);
-            $table->string('image', 100)->nullable();
+            $table->string('title');
+            $table->string('author');
+            $table->string('image')->nullable();
             $table->text('description');
-            $table->string('tag', 100)->nullable();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->string('tag')->nullable();
+            $table->timestamps();
         });
     }
 

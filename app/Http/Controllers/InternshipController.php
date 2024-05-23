@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use App\Models\Internship;
 use App\Models\Position;
@@ -77,7 +78,7 @@ class InternshipController extends Controller
         $internship = Internship::with('position')->find($id);
 
         return Inertia::render('Artikel/Show', [
-            'artikel' => $artikel
+            'internship' => $internship
         ]);
     }
 
@@ -93,46 +94,46 @@ class InternshipController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        //
-        $request->validate([
-            'position_id'     => 'required',
-            'name'            => 'required',
-            'phone'           => 'required',
-            'email'           => 'required',
-            'institution'     => 'required',
-            'major'           => 'required',
-            'college_year'    => 'required',
-            'reason'          => 'required',
-            'summary'         => 'requiered',
-            'cv'              => 'required',
-        ]);
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    //     $request->validate([
+    //         'position_id'     => 'required',
+    //         'name'            => 'required',
+    //         'phone'           => 'required',
+    //         'email'           => 'required',
+    //         'institution'     => 'required',
+    //         'major'           => 'required',
+    //         'college_year'    => 'required',
+    //         'reason'          => 'required',
+    //         'summary'         => 'requiered',
+    //         'cv'              => 'required',
+    //     ]);
 
-        Artikel::update([
-            'position_id'    => $request->position_id,
-            'name'           => $request->name,
-            'phone'          => $request->phone,
-            'email'          => $request->email,
-            'institution'    => $request->institution,
-            'major'          => $request->major,
-            'college_year'   => $request->college_year,
-            'reason'         => $request->reason,
-            'summary'        => $request->summary,
-            'cv'             => $request->cv,
-        ]);
+    //     Artikel::update([
+    //         'position_id'    => $request->position_id,
+    //         'name'           => $request->name,
+    //         'phone'          => $request->phone,
+    //         'email'          => $request->email,
+    //         'institution'    => $request->institution,
+    //         'major'          => $request->major,
+    //         'college_year'   => $request->college_year,
+    //         'reason'         => $request->reason,
+    //         'summary'        => $request->summary,
+    //         'cv'             => $request->cv,
+    //     ]);
 
-        return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Applicant Berhasil Diupdate!');
-    }
+    //     return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Applicant Berhasil Diupdate!');
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-        $internship->delete();
+    // public function destroy(string $id)
+    // {
+    //     $internshi = Artikel::find($id);
+    //     $internship->delete();
 
-        return redirect()->route('Admin/Article/Article')->with('success', 'Data Berhasil Dihapus!');
-    }
+    //     return redirect()->route('Admin/Article/Article')->with('success', 'Data Berhasil Dihapus!');
+    // }
 }

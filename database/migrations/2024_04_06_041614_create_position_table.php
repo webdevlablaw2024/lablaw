@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('position', function (Blueprint $table) {
             $table->id();
-            $table->string('position', 100);
-            $table->string('image', 100)->nullable();
+            $table->string('position');
+            $table->string('image')->nullable();
             $table->longText('description');
             $table->enum('area', ['onsite', 'remote', 'hybrid']);
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->boolean('is_oprec')->default(false);
+            $table->timestamps();
         });
     }
 
