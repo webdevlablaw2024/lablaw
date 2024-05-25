@@ -35,7 +35,8 @@ const AboutPage = () => {
             <div className="mx-[20px] md:px-[100px] lg:mx-[160px] mb-20">
                 <div className="w-full flex flex-col items-center">
                     <TitleText classname="md:w-3/4 text-center">
-                        Toward Legal Enlightenment: Lab Law, Your Gateway to Informed Legal Empowerment.
+                        Toward Legal Enlightenment: Lab Law, Your Gateway to
+                        Informed Legal Empowerment.
                     </TitleText>
                     <SubtitleText classname="md:w-3/5 text-center">
                         We are thrilled to present ourselves as a company
