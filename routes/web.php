@@ -44,9 +44,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/show', function () {
     return Inertia::render('ShowArticle');
 });
-Route::get('/halo', function () {
-    return Inertia::render('Halo');
-});
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/soon', function () {
