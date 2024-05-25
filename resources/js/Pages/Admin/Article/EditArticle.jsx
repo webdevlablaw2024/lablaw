@@ -8,7 +8,7 @@ import "react-quill/dist/quill.snow.css";
 const EditArticle = (props) => {
     const [imagePreview, setImagePreview] = useState(
         props.artikel.image
-            ? `/storage/artikel/images/${props.artikel.image}`
+            ? `${window.location.origin}/storage/artikel/images/${props.artikel.image}`
             : null
     );
     const { data, setData, post, errors } = useForm({

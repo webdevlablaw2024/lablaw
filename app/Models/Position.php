@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     use HasFactory;
-    protected $table = 'position'; 
-    protected $primaryKey = 'id'; 
+    protected $table = 'position';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'position', 
-        'image', 
-        'description', 
-        'area'
+        'position',
+        'image',
+        'description',
+        'area',
+        'is_oprec'
     ];
 
     public function member()
@@ -22,7 +23,8 @@ class Position extends Model
         return $this->hasMany(Member::class);
     }
 
-    public function internship() {
+    public function internship()
+    {
         return $this->hasOne(Internship::class);
     }
 }

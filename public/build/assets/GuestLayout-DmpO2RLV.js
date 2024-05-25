@@ -1,0 +1,1 @@
+import{j as e}from"./app-Dep5erZb.js";function r({children:m}){return e.jsx("div",{className:"w-full h-screen bg-[url('/images/background-1.png')] bg-cover mx-auto flex justify-center md:items-center sm:pt-0",children:e.jsx("div",{className:"w-full p-10 m-8 bg-white overflow-y-auto shadow-md rounded-lg md:max-w-md md:h-max",children:m})})}export{r as G};

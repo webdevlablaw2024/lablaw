@@ -18,9 +18,8 @@ const Footer = () => {
                             <h1 className="text-white text-2xl mb-6">
                                 info@lablaw.id
                             </h1>
-                            <p className="text-[#D5D5D5]">
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry.
+                            <p className="text-[#D5D5D5] capitalize">
+                            Legal education platform & firm
                             </p>
                         </div>
                         <div>
@@ -29,18 +28,13 @@ const Footer = () => {
                             </h2>
                             <ul className=" text-[#D5D5D5] font-medium">
                                 <li className="mb-4">
-                                    <a href="#" className="hover:underline">
+                                    <a href="/about" className="hover:underline">
                                         About
                                     </a>
                                 </li>
                                 <li className="mb-4">
-                                    <a href="#" className="hover:underline">
+                                    <a href="/news" className="hover:underline">
                                         News
-                                    </a>
-                                </li>
-                                <li className="mb-4">
-                                    <a href="#" className="hover:underline">
-                                        Contact
                                     </a>
                                 </li>
                             </ul>

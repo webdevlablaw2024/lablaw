@@ -74,6 +74,35 @@ const AddPosition = () => {
                         </div>
                         <div className="my-5 flex flex-col gap-y-2">
                             <label
+                                htmlFor="area"
+                                className="font-semibold text-lg"
+                            >
+                                Area*
+                            </label>
+                            <select
+                                id="area"
+                                className={`border-2 border-gray-300 rounded-lg p-2 ${
+                                    errors.area ? "border-red-500" : ""
+                                }`}
+                                value={data.area || ""}
+                                onChange={(e) =>
+                                    setData("area", e.target.value)
+                                }
+                            >
+                                <option value="">Select area</option>
+                                <option value="onsite">Onsite</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                            {errors.area && (
+                                <div className="text-red-500">
+                                    {errors.area}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="my-5 flex flex-col gap-y-2">
+                            <label
                                 htmlFor="gambar"
                                 className="font-semibold text-lg"
                             >
@@ -102,15 +131,28 @@ const AddPosition = () => {
                             >
                                 Description*
                             </label>
-                            <ReactQuill
-                                id="description"
-                                theme="snow"
-                                placeholder="Please enter description"
-                                value={data.description || ""}
-                                onChange={(value) =>
-                                    setData("description", value)
-                                }
-                            />
+                            <div
+                                className={`border-2 rounded-lg ${
+                                    errors.description
+                                        ? "border-red-500"
+                                        : "border-gray-300"
+                                }`}
+                            >
+                                <ReactQuill
+                                    id="description"
+                                    theme="snow"
+                                    placeholder="Please enter description"
+                                    value={data.description || ""}
+                                    onChange={(value) =>
+                                        setData("description", value)
+                                    }
+                                />
+                            </div>
+                            {errors.description && (
+                                <div className="text-red-500">
+                                    {errors.description}
+                                </div>
+                            )}
                         </div>
                         <div className="flex justify-end mt-6 gap-x-4">
                             <Link

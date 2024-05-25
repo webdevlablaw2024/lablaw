@@ -92,6 +92,7 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'position'       => 'required',
             'image'          => 'image|max:2048',
@@ -107,6 +108,7 @@ class PositionController extends Controller
 
         $position->position = $request->position;
         $position->description = $request->description;
+        $position->area = $request->area;
 
 
         if ($request->hasFile('image')) {
@@ -150,5 +152,16 @@ class PositionController extends Controller
 
 
         return redirect()->route('position.index')->with('success', 'Position deleted successfully.');
+    }
+
+    public function changeStatus($id)
+    {
+        $position = Position::find($id);
+
+        if ($position) {
+            $position->is_oprec = !$position->is_oprec;
+            $position->update();
+        }
+        return redirect()->back();
     }
 }

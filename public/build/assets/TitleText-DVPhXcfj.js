@@ -1,0 +1,1 @@
+import{j as e}from"./app-Dep5erZb.js";function s({classname:t="",children:x}){return e.jsx("h3",{className:"text-lg xl:text-xl font-medium mb-9 text-[#828282] "+t,children:x})}function m({classname:t="",children:x}){return e.jsx("h2",{className:"text-xl 2xl:text-4xl font-bold mb-9 "+t,children:x})}export{s as S,m as T};

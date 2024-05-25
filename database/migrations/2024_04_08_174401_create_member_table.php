@@ -15,11 +15,10 @@ return new class extends Migration
         Schema::create('member', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Position::class)->constrained('position')->cascadeOnDelete();
-            $table->string('name', 100);
+            $table->string('name');
             $table->enum('gender', ['male', 'female']);
-            $table->string('image', 100)->nullable();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->string('image')->nullable();
+            $table->timestamps();
         });
     }
 

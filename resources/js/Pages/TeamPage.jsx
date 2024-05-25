@@ -12,15 +12,15 @@ const TeamPage = () => {
     return (
         <>
             <Header />
-            <div className="mx-[160px] pt-40 flex flex-col items-center">
+            <div className="px-[20px] md:px-[100px] xl:px-[160px] pt-40 flex flex-col items-center">
                 <TitleText classname="py-4 px-8  rounded-full border-2 border-black">
                     My Team Our Family
                 </TitleText>
-                <SubtitleText>
+                <SubtitleText classname="text-center">
                     Solidarity, Support, Success, Together Stronger!
                 </SubtitleText>
-                <div className="flex gap-5 font-bold mb-10">
-                    <ItemTabDivision>View all</ItemTabDivision>
+                <div className="hidden md:flex gap-2 xl:gap-5 font-bold mb-10 text-center items-center">
+                    <ItemTabDivision>View all</ItemTabDivision> 
                     <ItemTabDivision>Web Development</ItemTabDivision>
                     <ItemTabDivision>SMS</ItemTabDivision>
                     <ItemTabDivision>CDVE</ItemTabDivision>
@@ -30,7 +30,7 @@ const TeamPage = () => {
                     <ItemTabDivision>LCW</ItemTabDivision>
                     <ItemTabDivision>Public Relation</ItemTabDivision>
                 </div>
-                <div className="grid grid-cols-4 gap-10 mb-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
                     <TeamCard />
                     <TeamCard />
                     <TeamCard />
@@ -51,7 +51,7 @@ const TeamPage = () => {
                     </h4>
                     <div className="flex justify-between items-center">
                         <a
-                            href=""
+                            href="/internship"
                             className="border-2 bg-[#FFFFFF] border-[#BBBBBB] font-bold py-2 px-6 rounded-lg hover:bg-[#BBBBBB] transition duration-300 ease-in-out"
                         >
                             Explore open roles

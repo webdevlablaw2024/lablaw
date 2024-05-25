@@ -17,7 +17,7 @@ const NewsPage = ({ artikel }) => {
                     <div
                         className="relative h-48 md:h-64 xl:h-72 w-full flex items-end justify-start text-left bg-cover bg-center mb-5 rounded-lg"
                         style={{
-                            backgroundImage: `url(${artikel[0].image})`,
+                            backgroundImage: `url(${window.location.origin}/storage/artikel/images/${artikel[0].image})`,
                         }}
                     >
                         <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900 rounded-lg"></div>
@@ -35,10 +35,7 @@ const NewsPage = ({ artikel }) => {
                         </div>
                         <main className="px-3 pb-5 z-10">
                             <Link
-                                href={route(
-                                    "news.detail",
-                                    artikel[0].id
-                                )}
+                                href={route("news.detail", artikel[0].id)}
                                 className="text-lg lg:text-2xl tracking-tight font-medium leading-6 font-regular text-white hover:underline"
                             >
                                 <p className="line-clamp-2 text-ellipsis overflow-hidden ...">
@@ -47,7 +44,7 @@ const NewsPage = ({ artikel }) => {
                             </Link>
                         </main>
                     </div>
-                    <div className="flex gap-3 mb-4">
+                    <div className="grid grid-cols-3 gap-5">
                         {articlesTop.map((article, index) => (
                             <NewsCard
                                 key={index}
@@ -57,7 +54,7 @@ const NewsPage = ({ artikel }) => {
                         ))}
                     </div>
 
-                    <h2 className="text-xl 2xl:text-4xl font-bold mb-2">
+                    <h2 className="text-xl 2xl:text-4xl font-bold mb-2 mt-16 lg:mt-5">
                         What's New
                     </h2>
 
@@ -75,11 +72,12 @@ const NewsPage = ({ artikel }) => {
 
                     <div className="h-[1px] lg:h-0.25 w-full bg-gray-500 mb-10"></div>
 
-                    <div className="gap-10 md:flex">
+                    <div className="gap-10 md:flex justify-center">
+                        <p className="">There are no events available</p>
+                        {/* <NewsCard classname="text-xl" />
                         <NewsCard classname="text-xl" />
                         <NewsCard classname="text-xl" />
-                        <NewsCard classname="text-xl" />
-                        <NewsCard classname="text-xl" />
+                        <NewsCard classname="text-xl" /> */}
                     </div>
                 </div>
             </div>

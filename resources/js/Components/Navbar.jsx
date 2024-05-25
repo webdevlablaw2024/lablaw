@@ -9,7 +9,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const navigation = [
     { name: "Home", href: "/", current: true },
     { name: "Education", href: "soon", current: false },
-    { name: "Firm", href: "soon", current: false },
+    { name: "Firm", href: "about", current: false },
     { name: "News", href: "news", current: false },
 ];
 

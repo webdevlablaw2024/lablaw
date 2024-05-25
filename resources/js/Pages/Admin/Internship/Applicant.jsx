@@ -11,27 +11,27 @@ const Applicant = (props) => {
         { name: "No", selector: (row, index) => index + 1, sortable: false },
         {
             name: "Name",
-            selector: (row) => row.nama,
+            selector: (row) => row.name,
+            sortable: true,
+            width: "200px",
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email,
             sortable: true,
             width: "200px",
         },
         {
             name: "Position",
-            selector: (row) => row.lowongan_internship.nama_lowongan,
+            selector: (row) => row.position.position,
             sortable: true,
             width: "200px",
         },
         {
-            name: "Resume",
+            name: "CV",
             selector: (row) => row.cv,
             sortable: true,
-            width: "400px",
-        },
-        {
-            name: "Portofolio",
-            selector: (row) => row.portofolio,
-            sortable: true,
-            width: "400px",
+            width: "200px",
         },
         {
             name: "Action",
