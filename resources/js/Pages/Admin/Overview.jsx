@@ -3,11 +3,11 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "react-data-table-component";
 
 const Overview = (props) => {
-    console.log(props)
-     const formatDate = (dateString) => {
-         const options = { day: "2-digit", month: "long", year: "numeric" };
-         return new Date(dateString).toLocaleDateString("id-ID", options);
-     };
+    console.log(props);
+    const formatDate = (dateString) => {
+        const options = { day: "2-digit", month: "long", year: "numeric" };
+        return new Date(dateString).toLocaleDateString("id-ID", options);
+    };
     const columnArticle = [
         { name: "Title", selector: (row) => row.title, sortable: true },
         { name: "Author", selector: (row) => row.author, sortable: true },
@@ -18,7 +18,7 @@ const Overview = (props) => {
         },
     ];
     const columnApplicant = [
-        { name: "Name", selector: (row) => row.nama, sortable: true },
+        { name: "Name", selector: (row) => row.name, sortable: true },
         {
             name: "Date",
             selector: (row) => formatDate(row.created_at),

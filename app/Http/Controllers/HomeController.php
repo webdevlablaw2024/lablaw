@@ -9,6 +9,14 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
+    public function home()
+    {
+        $artikels = Artikel::latest()->take(4)->get();
+
+        return Inertia::render('Home', [
+            'artikels' => $artikels
+        ]);
+    }
     public function news()
     {
         $artikel = Artikel::latest()->get();
