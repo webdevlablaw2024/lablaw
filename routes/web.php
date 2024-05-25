@@ -48,9 +48,7 @@ Route::get('/halo', function () {
     return Inertia::render('Halo');
 });
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/soon', function () {
     return Inertia::render('ComingSoon');
 });

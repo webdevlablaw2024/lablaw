@@ -17,10 +17,10 @@ class UsersTableSeeder extends Seeder
     {
         //
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name' => 'Admin Lablaw',
+            'email' => 'admin.lablaw@lablaw.id',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('password'),
+            'password' => Hash::make('admin.lablaw123'),
             'role' => 'admin',
         ]);
     }
