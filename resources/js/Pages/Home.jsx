@@ -1,5 +1,6 @@
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Navbar";
+import { Link } from "@inertiajs/react";
 
 const Home = (props) => {
     console.log(props);
@@ -34,9 +35,12 @@ const Home = (props) => {
                                 className="w-32 h-28 rounded-md lg:rounded-xl lg:w-48 lg:h-44"
                             />
                             <div className="ml-4 w-full flex flex-col justify-between lg:py-3 text-justify">
-                                <h3 className="text-lg lg:text-2xl xl:text-3xl text-black font-semibold">
+                                <Link
+                                    href={route("news.detail", article.id)}
+                                    className="text-lg lg:text-2xl xl:text-3xl text-black font-semibold hover:underline"
+                                >
                                     {article.title}
-                                </h3>
+                                </Link>
                                 <p
                                     className="text-slate-900 text-sm lg:text-base text-ellipsis overflow-hidden line-clamp-3 lg:line-clamp-4 mt-auto"
                                     dangerouslySetInnerHTML={{
