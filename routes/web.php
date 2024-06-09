@@ -58,12 +58,8 @@ Route::get('/news', function () {
 Route::get('/about', function () {
     return Inertia::render('AboutPage');
 });
-Route::get('/team', function () {
-    return Inertia::render('TeamPage');
-});
-Route::get('/internship', function () {
-    return Inertia::render('InternshipPage');
-});
+Route::get('/team', [HomeController::class, 'team'])->name('team');
+Route::get('/internship', [HomeController::class, 'internship'])->name('internship');
 Route::get('/position-detail', function () {
     return Inertia::render('PositionDetailPage');
 });

@@ -31,11 +31,13 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <img
-                src="/images/logo-lablaw.png"
-                className="w-[60px] h-[60px]"
-                alt="Logo LabLaw"
-            />
+            <Link href="/">
+                <img
+                    src="/images/logo-lablaw.png"
+                    className="w-20 h-20"
+                    alt="Logo LabLaw"
+                />
+            </Link>
 
             <h1 className="text-2xl font-bold mt-[19px]">
                 Welcome <br />
