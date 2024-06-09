@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ItemTabDivision from "@/Components/ItemTabDivision";
 
-const TeamPage = () => {
+const TeamPage = ({ members }) => {
+    console.log(members);
     return (
         <>
             <Header />
@@ -20,7 +21,7 @@ const TeamPage = () => {
                     Solidarity, Support, Success, Together Stronger!
                 </SubtitleText>
                 <div className="hidden md:flex gap-2 xl:gap-5 font-bold mb-10 text-center items-center">
-                    <ItemTabDivision>View all</ItemTabDivision> 
+                    <ItemTabDivision>View all</ItemTabDivision>
                     <ItemTabDivision>Web Development</ItemTabDivision>
                     <ItemTabDivision>SMS</ItemTabDivision>
                     <ItemTabDivision>CDVE</ItemTabDivision>
@@ -31,14 +32,9 @@ const TeamPage = () => {
                     <ItemTabDivision>Public Relation</ItemTabDivision>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
+                    {members.map((member) => (
+                        <TeamCard key={member.id} member={member} />
+                    ))}
                 </div>
                 <button className="border-2 border-black font-bold py-2 px-6 rounded-full mb-20 hover:translate-y-2 transition duration-300 ease-in-out active:bg-[#BBBBBB]">
                     <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
