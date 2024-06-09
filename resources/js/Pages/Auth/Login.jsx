@@ -37,11 +37,12 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <img
+            <Link href="/"><img
                 src="/images/logo-lablaw.png"
                 className="w-20 h-20"
                 alt="Logo LabLaw"
-            />
+            /></Link>
+            
 
             <h1 className="text-3xl font-bold mt-[19px]">
                 Welcome <br />

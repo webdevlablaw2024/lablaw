@@ -40,11 +40,15 @@ const TeamPage = ({ members }) => {
                     <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
                     Load more
                 </button>
-                <div className="w-full p-12 bg-[#EDEDED] rounded-lg">
-                    <h2 className="text-4xl font-bold mb-1">We’re hiring</h2>
-                    <h4 className="text-lg">
-                        Discover Your Potential: Connect with Us Today!
-                    </h4>
+                <div className="w-full p-12 bg-[#EDEDED] rounded-lg  flex justify-between">
+                    <div>
+                        <h2 className="text-4xl font-bold mb-1">
+                            We’re hiring
+                        </h2>
+                        <h4 className="text-lg">
+                            Discover Your Potential: Connect with Us Today!
+                        </h4>
+                    </div>
                     <div className="flex justify-between items-center">
                         <a
                             href="/internship"
@@ -52,28 +56,6 @@ const TeamPage = ({ members }) => {
                         >
                             Explore open roles
                         </a>
-                        <div className="flex">
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                        </div>
                     </div>
                 </div>
             </div>
