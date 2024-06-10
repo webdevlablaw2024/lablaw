@@ -8,7 +8,8 @@ import OpenPositionCard from "@/Components/OpenPositionCard";
 import HowToApplyCard from "@/Components/HowToApplyCard";
 import FAQCard from "@/Components/FAQCard";
 
-const InternshipPage = () => {
+const InternshipPage = ({ positions }) => {
+    console.log(positions);
     return (
         <>
             <Header />
@@ -94,26 +95,12 @@ const InternshipPage = () => {
                     team that works fully remotely!
                 </SubtitleText>
                 <div className="w-full flex flex-col gap-8">
-                    <OpenPositionCard
-                        department="Marketing"
-                        division="Web Development"
-                    />
-                    <OpenPositionCard
-                        department="Marketing"
-                        division="Creative Design & Video Editor"
-                    />
-                    <OpenPositionCard
-                        department="Marketing"
-                        division="Social Media Spesialist"
-                    />
-                    <OpenPositionCard
-                        department="Huuman Resources"
-                        division="Human Resource Development"
-                    />
-                    <OpenPositionCard
-                        department="Marketing"
-                        division="Web Development"
-                    />
+                    {positions.map((position) => (
+                        <OpenPositionCard
+                            key={position.id}
+                            division={position.position}
+                        />
+                    ))}
                 </div>
             </div>
 

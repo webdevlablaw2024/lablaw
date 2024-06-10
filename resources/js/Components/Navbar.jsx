@@ -106,7 +106,7 @@ export default function Navbar() {
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <Link
-                                    href="register"
+                                    href="login"
                                     className="relative   p-2.5 text-white hover:text-gray-200 border-white hover:border-gray-200 border"
                                 >
                                     Sign In

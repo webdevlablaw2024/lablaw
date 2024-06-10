@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ItemTabDivision from "@/Components/ItemTabDivision";
 
-const TeamPage = () => {
+const TeamPage = ({ members }) => {
+    console.log(members);
     return (
         <>
             <Header />
@@ -20,7 +21,7 @@ const TeamPage = () => {
                     Solidarity, Support, Success, Together Stronger!
                 </SubtitleText>
                 <div className="hidden md:flex gap-2 xl:gap-5 font-bold mb-10 text-center items-center">
-                    <ItemTabDivision>View all</ItemTabDivision> 
+                    <ItemTabDivision>View all</ItemTabDivision>
                     <ItemTabDivision>Web Development</ItemTabDivision>
                     <ItemTabDivision>SMS</ItemTabDivision>
                     <ItemTabDivision>CDVE</ItemTabDivision>
@@ -31,24 +32,23 @@ const TeamPage = () => {
                     <ItemTabDivision>Public Relation</ItemTabDivision>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
+                    {members.map((member) => (
+                        <TeamCard key={member.id} member={member} />
+                    ))}
                 </div>
                 <button className="border-2 border-black font-bold py-2 px-6 rounded-full mb-20 hover:translate-y-2 transition duration-300 ease-in-out active:bg-[#BBBBBB]">
                     <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
                     Load more
                 </button>
-                <div className="w-full p-12 bg-[#EDEDED] rounded-lg">
-                    <h2 className="text-4xl font-bold mb-1">We’re hiring</h2>
-                    <h4 className="text-lg">
-                        Discover Your Potential: Connect with Us Today!
-                    </h4>
+                <div className="w-full p-12 bg-[#EDEDED] rounded-lg  flex justify-between">
+                    <div>
+                        <h2 className="text-4xl font-bold mb-1">
+                            We’re hiring
+                        </h2>
+                        <h4 className="text-lg">
+                            Discover Your Potential: Connect with Us Today!
+                        </h4>
+                    </div>
                     <div className="flex justify-between items-center">
                         <a
                             href="/internship"
@@ -56,28 +56,6 @@ const TeamPage = () => {
                         >
                             Explore open roles
                         </a>
-                        <div className="flex">
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                            <img
-                                src="./images/person.png"
-                                className="w-16 rounded-full bg-[#CDCDCD]"
-                                alt="person"
-                            />
-                        </div>
                     </div>
                 </div>
             </div>

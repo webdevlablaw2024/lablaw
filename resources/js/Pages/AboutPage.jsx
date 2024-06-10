@@ -128,7 +128,7 @@ const AboutPage = () => {
                         Let's see who the great minds are in this company.
                     </SubtitleText>
                     <a
-                        href="/soon"
+                        href="/team"
                         className="rounded-full border-2 px-8 py-3 border-[#E2E2E2] font-bold text-lg"
                     >
                         <FontAwesomeIcon icon={faEye} className="mr-2" /> View

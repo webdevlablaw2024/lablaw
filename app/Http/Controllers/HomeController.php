@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
+use App\Models\Member;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -35,4 +37,21 @@ class HomeController extends Controller
             'artikels' => $artikels
         ]);
     }
+    public function internship()
+    {
+        $positions = Position::where('is_oprec', true)->get();
+
+        return Inertia::render('InternshipPage', [
+            'positions' => $positions,
+        ]);
+    }
+    public function team()
+    {
+        $members = Member::with("position")->get();
+
+        return Inertia::render('TeamPage', [
+            'members' => $members,
+        ]);
+    }
+
 }
