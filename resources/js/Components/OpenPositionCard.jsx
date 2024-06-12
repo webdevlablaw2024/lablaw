@@ -4,14 +4,15 @@ import {
     faClock,
     faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "@inertiajs/react";
 
-export default function OpenPositionCard({ division, onClick }) {
+export default function OpenPositionCard({ position, onClick }) {
     return (
         <div className="w-full p-8 bg-[#FFFFFF] rounded-lg text-[#333333] hover:cursor-pointer hover:bg-[#BBBBBB] transition duration-300 ease-in-out">
             <div className="flex justify-between items-center mb-2">
                 {/* <p className="text-base font-medium">{department}</p> */}
-                <a
-                    href=""
+                <Link
+                    href={route("internship.detail", { id: position.id })}
                     className="text-base font-medium flex items-center hover:underline"
                 >
                     View job{" "}
@@ -19,9 +20,9 @@ export default function OpenPositionCard({ division, onClick }) {
                         icon={faArrowUpRightFromSquare}
                         style={{ width: 13, height: 13, paddingLeft: 10 }}
                     />
-                </a>
+                </Link>
             </div>
-            <h5 className="text-xl font-medium mb-5">{division}</h5>
+            <h5 className="text-xl font-medium mb-5">{position.position}</h5>
             <div className="flex gap-10">
                 <p className="flex items-center text-base font-medium">
                     <FontAwesomeIcon

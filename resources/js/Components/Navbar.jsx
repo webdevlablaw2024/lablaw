@@ -96,11 +96,6 @@ export default function Navbar() {
                                                 {item.name}
                                             </Link>
                                         ))}
-                                        <input
-                                            type="text"
-                                            className="bg-gray-100 rounded-md"
-                                            placeholder="Search"
-                                        />
                                     </div>
                                 </div>
                             </div>

@@ -98,7 +98,7 @@ const InternshipPage = ({ positions }) => {
                     {positions.map((position) => (
                         <OpenPositionCard
                             key={position.id}
-                            division={position.position}
+                            position={position}
                         />
                     ))}
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
+use App\Models\Internship;
 use App\Models\Member;
 use App\Models\Position;
 use Illuminate\Http\Request;
@@ -53,5 +54,9 @@ class HomeController extends Controller
             'members' => $members,
         ]);
     }
-
+    public function showInternship($id)
+    {
+        $position = Position::findOrFail($id);
+        return Inertia::render('PositionDetailPage', ['position' => $position]);
+    }
 }
