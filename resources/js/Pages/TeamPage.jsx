@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Header from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import TitleText from "@/Components/TitleText";
@@ -9,30 +10,48 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ItemTabDivision from "@/Components/ItemTabDivision";
 
 const TeamPage = ({ members }) => {
-    console.log(members);
+    const [selectedDivisionId, setSelectedDivisionId] = useState(null);
+
+    const handleDivisionChange = (divisionId) => {
+        event.preventDefault();
+        setSelectedDivisionId(divisionId);
+    };
+
+    const filteredMembers = selectedDivisionId === null
+        ? members
+        : members.filter(member => member.position.id === selectedDivisionId);
+
+    const divisions = [
+        { id: null, name: 'View all' },
+        { id: 1, name: 'Web Development' },
+        { id: 2, name: 'Project' },
+        { id: 3, name: 'CDVE' },
+        { id: 4, name: 'Legal Secretary' },
+        { id: 5, name: 'HRD' },
+        { id: 6, name: 'SMS' },
+        { id: 7, name: 'LCW' },
+        { id: 8, name: 'Public Relation' }
+    ];
+
     return (
         <>
             <Header />
             <div className="px-[20px] md:px-[100px] xl:px-[160px] pt-40 flex flex-col items-center">
-                <TitleText classname="py-4 px-8  rounded-full border-2 border-black">
+                <TitleText classname="py-4 px-8 rounded-full border-2 border-black">
                     My Team Our Family
                 </TitleText>
                 <SubtitleText classname="text-center">
                     Solidarity, Support, Success, Together Stronger!
                 </SubtitleText>
                 <div className="hidden md:flex gap-2 xl:gap-5 font-bold mb-10 text-center items-center">
-                    <ItemTabDivision>View all</ItemTabDivision>
-                    <ItemTabDivision>Web Development</ItemTabDivision>
-                    <ItemTabDivision>SMS</ItemTabDivision>
-                    <ItemTabDivision>CDVE</ItemTabDivision>
-                    <ItemTabDivision>Legal Secretary</ItemTabDivision>
-                    <ItemTabDivision>HRD</ItemTabDivision>
-                    <ItemTabDivision>Project</ItemTabDivision>
-                    <ItemTabDivision>LCW</ItemTabDivision>
-                    <ItemTabDivision>Public Relation</ItemTabDivision>
+                    {divisions.map((division) => (
+                        <ItemTabDivision key={division.id} onClick={() => handleDivisionChange(division.id)}>
+                            {division.name}
+                        </ItemTabDivision>
+                    ))}
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
-                    {members.map((member) => (
+                    {filteredMembers.map((member) => (
                         <TeamCard key={member.id} member={member} />
                     ))}
                 </div>
@@ -40,7 +59,7 @@ const TeamPage = ({ members }) => {
                     <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
                     Load more
                 </button>
-                <div className="w-full p-12 bg-[#EDEDED] rounded-lg  flex justify-between">
+                <div className="w-full p-12 bg-[#EDEDED] rounded-lg flex justify-between">
                     <div>
                         <h2 className="text-4xl font-bold mb-1">
                             We’re hiring

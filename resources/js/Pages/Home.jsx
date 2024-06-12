@@ -13,9 +13,11 @@ const Home = (props) => {
                     <h1 className="text-4xl lg:text-6xl font-bold lg:font-extrabold tracking-wider text-white text-start w-4/5">
                         LEGAL EDUCATION PLATFORM & LAW FIRM
                     </h1>
+                    <Link href="#footer">
                     <button className="bg-[#022F4C] mt-5 lg:mt-8 text-white px-3 py-1.5 text-md md:px-4 md:py-2 md:text-sm lg:px-5 lg:py-2.5 lg:text-base rounded-full">
                         Contact
                     </button>
+                    </Link>
                 </div>
             </div>
             <div className="mt-20">

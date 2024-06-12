@@ -7,13 +7,23 @@ import InputForm from "@/Components/InputForm";
 
 const FormPage = () => {
     const [cvFile, setCvFile] = useState(null);
+    const [portfolioFile, setPortfolioFile] = useState(null);
 
-    const onDrop = useCallback((acceptedFiles) => {
+    const onDropCV = useCallback((acceptedFiles) => {
         setCvFile(acceptedFiles[0]);
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        onDrop,
+    const onDropPortfolio = useCallback((acceptedFiles) => {
+        setPortfolioFile(acceptedFiles[0]);
+    }, []);
+
+    const cvDropzone = useDropzone({
+        onDrop: onDropCV,
+        accept: ".pdf",
+    });
+
+    const portfolioDropzone = useDropzone({
+        onDrop: onDropPortfolio,
         accept: ".pdf",
     });
 
@@ -30,7 +40,10 @@ const FormPage = () => {
         if (cvFile) {
             formData.append("cv", cvFile);
         }
-        
+        if (portfolioFile) {
+            formData.append("portfolio", portfolioFile);
+        }
+
         try {
             const response = await fetch("/api/formSubmit", {
                 method: "POST",
@@ -70,6 +83,7 @@ const FormPage = () => {
                     <InputForm id="email" label="Email" />
                     <InputForm id="institution" label="Institution" />
                     <InputForm id="major" label="Major" />
+                    <InputForm id="college-year" label="College Year" />
 
                     <label
                         htmlFor="reasons"
@@ -106,18 +120,18 @@ const FormPage = () => {
                         Upload CV
                     </label>
                     <div
-                        {...getRootProps()}
-                        className={`p-6 border-2 rounded-md hover:cursor-pointer shadow-md mb-12 ${
-                            isDragActive ? "border-blue-500" : "border-gray-300"
+                        {...cvDropzone.getRootProps()}
+                        className={`p-6 border-2 rounded-md hover:cursor-pointer shadow-md mb-5 ${
+                            cvDropzone.isDragActive ? "border-blue-500" : "border-gray-300"
                         } mb-12`}
                     >
-                        <input {...getInputProps()}/>
-                        {isDragActive ? (
+                        <input {...cvDropzone.getInputProps()} />
+                        {cvDropzone.isDragActive ? (
                             <p>Drop the files here...</p>
                         ) : (
                             <p>
                                 Drag & drop your CV here, or <span className="text-blue-500">click to select
-                                files</span> <span  className="text-gray-400">(.pdf only)</span>
+                                files</span> <span className="text-gray-400">(.pdf only)</span>
                             </p>
                         )}
                         {cvFile && (
@@ -125,9 +139,35 @@ const FormPage = () => {
                         )}
                     </div>
 
+                    <label
+                        htmlFor="portfolio"
+                        className="block text-lg font-medium text-gray-700"
+                    >
+                        Upload Portfolio
+                    </label>
+                    <div
+                        {...portfolioDropzone.getRootProps()}
+                        className={`p-6 border-2 rounded-md hover:cursor-pointer shadow-md mb-12 ${
+                            portfolioDropzone.isDragActive ? "border-blue-500" : "border-gray-300"
+                        } mb-12`}
+                    >
+                        <input {...portfolioDropzone.getInputProps()} />
+                        {portfolioDropzone.isDragActive ? (
+                            <p>Drop the files here...</p>
+                        ) : (
+                            <p>
+                                Drag & drop your portfolio here, or <span className="text-blue-500">click to select
+                                files</span> <span className="text-gray-400">(.pdf only)</span>
+                            </p>
+                        )}
+                        {portfolioFile && (
+                            <p className="mt-2 text-green-500">{portfolioFile.name}</p>
+                        )}
+                    </div>
+
                     <button
-                        type="submit"
-                        className=" text-[#828282] px-7 py-2 rounded-lg border-2 border-[#828282] border-opacity-50 hover:bg-[#828282] hover:text-[#333333] transition duration-300 ease-in-out mr-8"
+                        type="reset"
+                        className="text-[#828282] px-7 py-2 rounded-lg border-2 border-[#828282] border-opacity-50 hover:bg-[#828282] hover:text-[#333333] transition duration-300 ease-in-out mr-8"
                     >
                         Cancel
                     </button>

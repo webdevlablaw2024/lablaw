@@ -13,13 +13,13 @@ const InternshipPage = ({ positions }) => {
     return (
         <>
             <Header />
-            <div className="mx-[160px] pt-40 flex flex-col items-center">
-                <div className="flex gap-[100px] mb-20">
-                    <div>
-                        <h3 className="font-display text-3xl mb-1">
+            <div className="px-[20px] md:px-[100px] lg:px-[160px] pt-40 flex flex-col items-center">
+                <div className="lg:flex gap-[100px] mb-20">
+                    <div className="">
+                        <h3 className="font-display text-xl md:text-3xl mb-1">
                             Internship program
                         </h3>
-                        <h1 className="font-extrabold text-8xl font-[Roboto] mb-5">
+                        <h1 className="font-extrabold text-6xl md:text-8xl font-[Roboto] mb-5">
                             Lab Law
                         </h1>
                         <p className="text-lg text-justify">
@@ -33,11 +33,13 @@ const InternshipPage = ({ positions }) => {
                             careers.
                         </p>
                     </div>
-                    <img
-                        src="/icons/teamup.svg"
-                        className="w-[400px] p-10 mr-10 hidden md:block"
-                        alt="Team Up"
-                    />
+                    <div className="flex justify-center">
+                        <img
+                            src="/icons/teamup.svg"
+                            className=" w-[400px] p-10 mr-10 hidden md:block"
+                            alt="Team Up"
+                        />
+                    </div>
                 </div>
                 <TitleText>What We Need</TitleText>
                 <div className="flex flex-col gap-7 mb-20">
@@ -67,7 +69,7 @@ const InternshipPage = ({ positions }) => {
                 </div>
 
                 <TitleText>What You Got</TitleText>
-                <div className="flex gap-10 w-full mb-32">
+                <div className="flex flex-col md:flex-row gap-10 w-full mb-32">
                     <WhatYouGotCard
                         imageUrl={"/images/prizes/e-certificates.png"}
                         title="E-Certificates"
@@ -87,7 +89,7 @@ const InternshipPage = ({ positions }) => {
                 </div>
             </div>
 
-            <div className="px-[160px] p-20 flex flex-col items-center bg-[#EDEDED]">
+            <div className="px-[20px] md:px-[100px] lg:px-[160px] p-20 flex flex-col items-center bg-[#EDEDED]">
                 <TitleText>Open positions</TitleText>
                 <SubtitleText classname="text-center w-3/4">
                     Are you a student or fresh graduate looking to gain
@@ -104,9 +106,9 @@ const InternshipPage = ({ positions }) => {
                 </div>
             </div>
 
-            <div className="mx-[160px] p-20 flex flex-col items-center mb-20">
+            <div className="px-[20px] md:px-[100px] lg:px-[160px] p-20 flex flex-col items-center mb-20">
                 <TitleText>How to Apply</TitleText>
-                <div className="flex gap-5 mb-20">
+                <div className="flex flex-col md:flex-row gap-5 mb-20">
                     <HowToApplyCard
                         index={"01"}
                         imageUrl={"/icons/monitor.svg"}

@@ -69,11 +69,13 @@ export default function Navbar() {
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="h-10 lg:h-12 w-auto"
-                                        src="/images/logo.png"
-                                        alt="Your Company"
-                                    />
+                                    <Link href="/">
+                                        <img
+                                            className="h-10 lg:h-12 w-auto"
+                                            src="/images/logo.png"
+                                            alt="Your Company"
+                                        />
+                                    </Link>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
@@ -96,12 +98,17 @@ export default function Navbar() {
                                                 {item.name}
                                             </Link>
                                         ))}
+                                        {/* <input
+                                            type="text"
+                                            className="bg-gray-100 rounded-md"
+                                            placeholder="Search"
+                                        /> */}
                                     </div>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <Link
-                                    href="login"
+                                    href="/login"
                                     className="relative   p-2.5 text-white hover:text-gray-200 border-white hover:border-gray-200 border"
                                 >
                                     Sign In
