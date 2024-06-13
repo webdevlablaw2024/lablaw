@@ -6,9 +6,8 @@ export default function NewsCard({ classname = "", ...props }) {
             <div className={`` + classname}>
                 <img
                     src={`${window.location.origin}/storage/artikel/images/${props?.article?.image}`}
-                    // src="./images/hero_image.png"
                     alt="News"
-                    className="object-cover rounded-md w-full h-2/3"
+                    className="object-cover rounded-md w-full h-[200px]"
                 />
                 {props?.article?.id && (
                     <Link

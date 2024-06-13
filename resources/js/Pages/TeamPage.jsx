@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
 import Header from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import TitleText from "@/Components/TitleText";
 import SubtitleText from "@/Components/SubtitleText";
 import TeamCard from "@/Components/TeamCard";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ItemTabDivision from "@/Components/ItemTabDivision";
@@ -52,7 +53,14 @@ const TeamPage = ({ members }) => {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
                     {filteredMembers.map((member) => (
-                        <TeamCard key={member.id} member={member} />
+                        <motion.div
+                            key={member.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ ease: "easeOut", duration: 0.5 }}
+                        >
+                            <TeamCard key={member.id} member={member} />
+                        </motion.div>
                     ))}
                 </div>
                 <button className="border-2 border-black font-bold py-2 px-6 rounded-full mb-20 hover:translate-y-2 transition duration-300 ease-in-out active:bg-[#BBBBBB]">

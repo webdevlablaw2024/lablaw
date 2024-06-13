@@ -21,7 +21,7 @@ export default {
                 DEFAULT: {
                     css: {
                         'h1, h2, h3, h4, h5, h6': {
-                            color: theme('colors.gray.900'),
+                            marginTop: '1.5rem',
                             marginBottom: '0.5rem',
                         },
                         p: {
