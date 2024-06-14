@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Internship;
 use App\Models\Position;
 use Inertia\Inertia;
@@ -50,6 +51,7 @@ class InternshipController extends Controller
             'reason'          => 'required',
             'summary'         => 'requiered',
             'cv'              => 'required',
+            'portofolio'      => 'required',
         ]);
 
         Artikel::create([
@@ -63,6 +65,7 @@ class InternshipController extends Controller
             'reason'         => $request->reason,
             'summary'        => $request->summary,
             'cv'             => $request->cv,
+            'portofolio'     => $request->portofolio
         ]);
 
         //redirect
@@ -94,46 +97,50 @@ class InternshipController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    //     $request->validate([
-    //         'position_id'     => 'required',
-    //         'name'            => 'required',
-    //         'phone'           => 'required',
-    //         'email'           => 'required',
-    //         'institution'     => 'required',
-    //         'major'           => 'required',
-    //         'college_year'    => 'required',
-    //         'reason'          => 'required',
-    //         'summary'         => 'requiered',
-    //         'cv'              => 'required',
-    //     ]);
+    public function update(Request $request, $id)
+    {
+        //
+        $request->validate([
+            'position_id'     => 'required',
+            'name'            => 'required',
+            'phone'           => 'required',
+            'email'           => 'required',
+            'institution'     => 'required',
+            'major'           => 'required',
+            'college_year'    => 'required',
+            'reason'          => 'required',
+            'summary'         => 'requiered',
+            'cv'              => 'required',
+            'portofolio'      => 'required',
+        ]);
 
-    //     Artikel::update([
-    //         'position_id'    => $request->position_id,
-    //         'name'           => $request->name,
-    //         'phone'          => $request->phone,
-    //         'email'          => $request->email,
-    //         'institution'    => $request->institution,
-    //         'major'          => $request->major,
-    //         'college_year'   => $request->college_year,
-    //         'reason'         => $request->reason,
-    //         'summary'        => $request->summary,
-    //         'cv'             => $request->cv,
-    //     ]);
+        $internship = Internship::find($request->id);
 
-    //     return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Applicant Berhasil Diupdate!');
-    // }
+        $internship->position_id   = $request->position_id;
+        $internship->name          = $request->name;
+        $internship->phone         = $request->phone;
+        $internship->email         = $request->email;
+        $internship->institution   = $request->institution;
+        $internship->major         = $request->major;
+        $internship->colleger_year = $request->colleger_year;
+        $internship->reason        = $request->reason;
+        $internship->summary       = $request->summary;
+        $internship->cv            = $request->cv;
+        $internship->portofolio    = $request->portofolio;
+
+        $internship->save();
+
+        return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Applicant Berhasil Diupdate!');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(string $id)
-    // {
-    //     $internshi = Artikel::find($id);
-    //     $internship->delete();
+    public function destroy(string $id)
+    {
+        $internship = Internship::find($id);
+        $internship->delete();
 
-    //     return redirect()->route('Admin/Article/Article')->with('success', 'Data Berhasil Dihapus!');
-    // }
+        return redirect()->route('Admin/Internship/Applicant')->with('success', 'Data Berhasil Dihapus!');
+    }
 }

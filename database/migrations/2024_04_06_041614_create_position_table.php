@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('position');
             $table->string('image')->nullable();
             $table->longText('description');
-            $table->enum('area', ['onsite', 'remote', 'hybrid']);
             $table->boolean('is_oprec')->default(false);
             $table->timestamps();
         });
