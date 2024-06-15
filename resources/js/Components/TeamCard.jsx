@@ -1,8 +1,10 @@
 const TeamCard = ({ classname = "", member }) => {
+    const imageSrc = member.gender === "female" ? "./images/female.png" : "./images/male.png";
+
     return (
         <div className={classname}>
             <img
-                src="./images/person.png"
+                src={imageSrc}
                 className="rounded-lg bg-[#004877]"
                 alt="Person"
             />

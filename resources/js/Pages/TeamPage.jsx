@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
@@ -11,12 +11,18 @@ import ItemTabDivision from "@/Components/ItemTabDivision";
 
 const TeamPage = ({ members }) => {
     const [selectedDivisionKey, setSelectedDivisionKey] = useState(null);
-    const [animationKey, setAnimationKey] = useState(0);  // State to track animation resets
+    const [animationKey, setAnimationKey] = useState(0);  
+    const [visibleCount, setVisibleCount] = useState(8);  
 
     const handleDivisionChange = (event, divisionKey) => {
         event.preventDefault();
         setSelectedDivisionKey(divisionKey);
-        setAnimationKey(prevKey => prevKey + 1);  // Update animation key to reset animations
+        setAnimationKey(prevKey => prevKey + 1);  
+        setVisibleCount(8); 
+    };
+
+    const handleLoadMore = () => {
+        setVisibleCount(prevCount => prevCount + 8);
     };
 
     const filteredMembers =
@@ -29,6 +35,8 @@ const TeamPage = ({ members }) => {
                       member.position.position.toLowerCase() ===
                       selectedDivisionKey.toLowerCase()
               );
+
+    const displayedMembers = filteredMembers.slice(0, visibleCount);
 
     const divisions = [
         { key: null, name: "View all" },
@@ -65,7 +73,7 @@ const TeamPage = ({ members }) => {
                     ))}
                 </div>
                 <div key={animationKey} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-10">
-                    {filteredMembers.map((member) => (
+                    {displayedMembers.map((member) => (
                         <motion.div
                             key={member.id}
                             initial={{ opacity: 0, y: 50 }}
@@ -76,10 +84,15 @@ const TeamPage = ({ members }) => {
                         </motion.div>
                     ))}
                 </div>
-                <button className="border-2 border-black font-bold py-2 px-6 rounded-full mb-20 hover:translate-y-2 transition duration-300 ease-in-out active:bg-[#BBBBBB]">
-                    <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
-                    Load more
-                </button>
+                {visibleCount < filteredMembers.length && (
+                    <button 
+                        onClick={handleLoadMore} 
+                        className="border-2 border-black font-bold py-2 px-6 rounded-full mb-20 hover:translate-y-2 transition duration-300 ease-in-out active:bg-[#BBBBBB]"
+                    >
+                        <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
+                        Load more
+                    </button>
+                )}
                 <div className="w-full p-12 bg-[#EDEDED] rounded-lg flex justify-between">
                     <div>
                         <h2 className="text-4xl font-bold mb-1">
