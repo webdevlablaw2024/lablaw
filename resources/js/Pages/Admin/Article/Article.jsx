@@ -12,9 +12,9 @@ const Article = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const column = [
-        { name: "No", selector: (row, index) => index + 1, sortable: false },
-        { name: "Title", selector: (row) => row.title, sortable: true },
-        { name: "Author", selector: (row) => row.author, sortable: true },
+        { name: "No", selector: (row, index) => index + 1, sortable: false, width: "55px" },
+        { name: "Title", selector: (row) => row.title, sortable: true, width: "400px" },
+        { name: "Author", selector: (row) => row.author, sortable: true, width: "200px" },
         {
             name: "Date",
             selector: (row) => {
@@ -23,6 +23,7 @@ const Article = (props) => {
                 return formattedDate;
             },
             sortable: true,
+            width: "200px",
         },
         {
             name: "Action",

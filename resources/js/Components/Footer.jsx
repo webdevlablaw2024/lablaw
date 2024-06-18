@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 const Footer = () => {
     return (
         <>
-            <footer className="bg-[#001624]">
+            <footer id="footer" className="bg-[#001624]">
                 <div className="mx-auto w-full max-w-screen-xl mt-20">
                     <img
                         src="/images/logo.png"

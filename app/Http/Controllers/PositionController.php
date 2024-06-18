@@ -40,7 +40,6 @@ class PositionController extends Controller
             'position'       => 'required',
             'image'          => 'image|max:2048',
             'description'    => 'required',
-            'area'           => 'required',
         ]);
 
         $imageName = null;
@@ -56,7 +55,6 @@ class PositionController extends Controller
             'position'       => $request->position,
             'image'          => $imageName,
             'description'    => $request->description,
-            'area'           => $request->area,
         ]);
 
         //redirect
@@ -97,7 +95,6 @@ class PositionController extends Controller
             'position'       => 'required',
             'image'          => 'image|max:2048',
             'description'    => 'required',
-            'area'           => 'required',
         ]);
 
         $position = Position::find($request->id);
@@ -106,9 +103,8 @@ class PositionController extends Controller
             return redirect()->route('position.index')->with('error', 'Position not found.');
         }
 
-        $position->position = $request->position;
+        $position->position    = $request->position;
         $position->description = $request->description;
-        $position->area = $request->area;
 
 
         if ($request->hasFile('image')) {

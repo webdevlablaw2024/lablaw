@@ -1,3 +1,13 @@
-export default function ItemTabDivision({ classname = "", children }) {
-  return <a href="#" className={`hover:bg-[#EDEDED] px-3 py-1 rounded-full transition duration-300 ease-in-out `+classname}>{children}</a>
-}
+const ItemTabDivision = ({ classname = "", children, onClick }) => {
+  return (
+      <a
+          href="#"
+          onClick={onClick}
+          className={`hover:bg-[#EDEDED] px-3 py-1 rounded-full transition duration-300 ease-in-out ${classname}`}
+      >
+          {children}
+      </a>
+  );
+};
+
+export default ItemTabDivision;

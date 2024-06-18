@@ -14,7 +14,6 @@ class Position extends Model
         'position',
         'image',
         'description',
-        'area',
         'is_oprec'
     ];
 

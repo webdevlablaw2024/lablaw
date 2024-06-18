@@ -1,13 +1,20 @@
 import Navbar from "@/Components/Navbar";
 import { Link } from "@inertiajs/react";
 
+import { motion } from "framer-motion";
+
 const ComingSoon = () => {
     return (
         <>
             <Navbar />
             <div className="h-screen flex flex-col">
                 <div className="bg-cover bg-[#001624] h-5/6 md:h-3/4 flex items-center justify-center">
-                    <div className="text-center text-white px-3 mt-24">
+                    <motion.div
+                        className="text-center text-white px-3 mt-24"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ ease: "easeOut", duration: 1.5 }}
+                    >
                         <h1 className="text-6xl font-bold mb-5 uppercase tracking-widest">
                             Coming Soon
                         </h1>
@@ -19,10 +26,15 @@ const ComingSoon = () => {
                                 the 1500
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="bg-cover bg-[#001624]  flex items-center justify-center">
-                    <div className="text-white mb-10 mx-auto">
+                    <motion.div
+                        className="text-white mb-10 mx-auto"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ ease: "easeOut", duration: 1.5 }}
+                    >
                         <p className="tracking-wider text-center">
                             www.lablaw.co.id
                         </p>
@@ -31,19 +43,13 @@ const ComingSoon = () => {
                                 <img src="/vector/x.png" alt="" />
                             </Link>
                             <Link className="w-5 h-5">
-                                <img
-                                    src="/vector/thread.png"
-                                    alt=""
-                                />
+                                <img src="/vector/thread.png" alt="" />
                             </Link>
                             <Link className="w-5 h-5">
-                                <img
-                                    src="/vector/instagram.png"
-                                    alt=""
-                                />
+                                <img src="/vector/instagram.png" alt="" />
                             </Link>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="bg-bottom bg-cover h-1/6 md:h-1/4">
                     <img

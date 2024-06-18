@@ -18,7 +18,7 @@ class PositionTableSeeder extends Seeder
             'position'       => 'Web Developer',
             'image'          => 'john.jpg',
             'description'    => 'Membuat website',
-            'area'           => 'remote',
+            'is_oprec'       => '0',
         ]);
 
     }

@@ -20,7 +20,8 @@ class Internship extends Model
         'colleger_year',
         'reason',
         'summary',
-        'cv'
+        'cv',
+        'portofolio'
     ]; 
 
     public function position() {

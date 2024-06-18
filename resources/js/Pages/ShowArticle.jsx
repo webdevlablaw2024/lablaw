@@ -3,10 +3,12 @@ import Header from "@/Components/Navbar";
 import Tag from "@/Components/Tag";
 import { Link } from "@inertiajs/react";
 import moment from "moment";
+
 const ShowArticle = ({ artikel, artikels }) => {
     const truncateText = (text) => {
         return text.length > 8 ? text.substr(0, 10) + "..." : text;
     };
+
     return (
         <>
             <Header />
@@ -37,12 +39,12 @@ const ShowArticle = ({ artikel, artikels }) => {
                             }}
                         ></div>
                     </div>
-                    <p
-                        className="mb-5"
+                    <div
+                        className="prose mb-5 text-justify"
                         dangerouslySetInnerHTML={{
                             __html: artikel?.description,
                         }}
-                    ></p>
+                    ></div>
                     <div className="flex gap-5 font-semibold mb-5">
                         <Tag>Law</Tag>
                         <Tag>Hukum</Tag>

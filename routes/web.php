@@ -60,9 +60,7 @@ Route::get('/about', function () {
 });
 Route::get('/team', [HomeController::class, 'team'])->name('team');
 Route::get('/internship', [HomeController::class, 'internship'])->name('internship');
-Route::get('/position-detail', function () {
-    return Inertia::render('PositionDetailPage');
-});
+Route::get('/internship/{id}', [HomeController::class, 'showInternship'])->name('internship.detail');
 Route::get('/form', function () {
     return Inertia::render('FormPage');
 });

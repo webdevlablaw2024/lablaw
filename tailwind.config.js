@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -16,8 +17,21 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 display: ['Briem Hand', 'cursive'],
             },
+            typography: (theme) => ({
+                DEFAULT: {
+                    css: {
+                        'h1, h2, h3, h4, h5, h6': {
+                            marginTop: '1.5rem',
+                            marginBottom: '0.5rem',
+                        },
+                        p: {
+                            marginBottom: '0.5rem',
+                        },
+                    },
+                },
+            }),
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, typography],
 };
