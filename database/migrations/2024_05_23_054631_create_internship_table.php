@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('reason');
             $table->longText('summary');
             $table->string('cv');
+            $table->string('portofolio');
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ class InternshipTableSeeder extends Seeder
             'reason'         => 'coba reason',
             'summary'        => 'coba mendeskripsikan',
             'cv'             => 'cv_ku.pdf',
+            'portofolio'     => 'portofolio_ku.pdf',
         ]);
 
     }
